@@ -1,4 +1,5 @@
-Data.Char
+Module ficha1 where
+import Data.Char
 -- length l: o n´umero de elementos da lista l
 -- head l: a cabe¸ca da lista (n˜ao vazia) l
 -- tail l: a cauda da lista (n˜ao vazia) l
