@@ -11,7 +11,7 @@ est˜ao j´a definidas no m´odulo Data.Char.
 -- digitAlpha [1,a,2,b,3] = ((1,2,3),(a,b,c))
 
 digitAlpha :: String -> (String,String)
-digitAlpha [] = ("","")
+digitAlpha [] = ("","") -- para que nao de aso a erros usar ([],[])
 digitAlpha (h:t)         
     | isAlpha h = (h:letras,digitos) --caso h seja uma letra
     | isDigit h = (letras,h:digitos) --caso h seja um numero
@@ -19,6 +19,15 @@ digitAlpha (h:t)
     where 
         (letras,digitos) = digitAlpha t
 
+digitAlphaSaraiva :: String -> (String,String)
+digitAlphaSaraiva s = digitAlphaAc s ([],[]) 
+    where 
+        digitAlphaAC :: String -> (String,String) -> (String,String)
+        digitAlphaAc [] ac = ac
+        digitAlphaAc (h:t) (ls,ds)
+            | isAlpha h = digitAlphaAc t (ls++[h],ds)
+            | isDigit h = digitAlphaAc t (ls,ds++[h])
+            | otherwise = digitAlphaAc t (ls,ds)
 
 {-
 2. Defina a fun¸c˜ao nzp :: [Int] -> (Int,Int,Int) que, dada uma lista de inteiros,
@@ -26,12 +35,16 @@ conta o n´umero de valores nagativos, o n´umero de zeros e o n´umero de valor
 devolvendo um triplo com essa informa¸c˜ao. Certifique-se que a fun¸c˜ao que definiu
 percorre a lista apenas uma vez.
 -}
+
 nzp :: [Int] -> (Int,Int,Int)
-nzp [] = 
+nzp [] = ([],[],[])
 nzp (h:t)
-    | isZero
-    | isPos
-    | 
+    | isZero h = (h:zer,pos,neg) 
+    | isPos = (zer,h:pos,neg)
+    | isNeg = (zer,pos,h:neg)
+    | otherwise = (zer,pos,neg)
+    where 
+        (zer,pos,neg) = nzp t
 {-
 3. Defina a fun¸c˜ao divMod :: Integral a => a -> a -> (a, a) que calcula simultane-
 amente a divis˜ao e o resto da divis˜ao inteira por subtrac¸c˜oes sucessivas.
