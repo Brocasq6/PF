@@ -1,4 +1,4 @@
-Module ficha4 where
+module Ficha4 where
 import Data.Char (isAlpha,isDigit)
 
 {-
@@ -19,15 +19,15 @@ digitAlpha (h:t)
     where 
         (letras,digitos) = digitAlpha t
 
-digitAlphaSaraiva :: String -> (String,String)
-digitAlphaSaraiva s = digitAlphaAc s ([],[]) 
-    where 
-        digitAlphaAC :: String -> (String,String) -> (String,String)
-        digitAlphaAc [] ac = ac
-        digitAlphaAc (h:t) (ls,ds)
-            | isAlpha h = digitAlphaAc t (ls++[h],ds)
-            | isDigit h = digitAlphaAc t (ls,ds++[h])
-            | otherwise = digitAlphaAc t (ls,ds)
+-- digitAlphaSaraiva :: String -> (String,String)
+-- digitAlphaSaraiva s = digitAlphaAc s ([],[]) 
+--     where 
+--         digitAlphaAC :: String -> (String,String) -> (String,String)
+--         digitAlphaAc [] ac = ac
+--         digitAlphaAc (h:t) (ls,ds)
+--             | isAlpha h = digitAlphaAc t (ls++[h],ds)
+--             | isDigit h = digitAlphaAc t (ls,ds++[h])
+--             | otherwise = digitAlphaAc t (ls,ds)
 
 {-
 2. Defina a fun¸c˜ao nzp :: [Int] -> (Int,Int,Int) que, dada uma lista de inteiros,
@@ -35,13 +35,29 @@ conta o n´umero de valores nagativos, o n´umero de zeros e o n´umero de valor
 devolvendo um triplo com essa informa¸c˜ao. Certifique-se que a fun¸c˜ao que definiu
 percorre a lista apenas uma vez.
 -}
+isNeg :: Int -> Bool 
+isNeg x
+    | x < 0 = True
+    | otherwise = False
+
+isPos :: Int -> Bool
+isPos x
+    | x > 0 = True
+    | otherwise = False
+
+isZero :: Int -> Bool
+isZero x
+    | x == 0 = True
+    | otherwise = False
+
+
 
 nzp :: [Int] -> (Int,Int,Int)
 nzp [] = ([],[],[])
 nzp (h:t)
-    | isZero h = (h:zer,pos,neg) 
-    | isPos = (zer,h:pos,neg)
-    | isNeg = (zer,pos,h:neg)
+    | isZero h = (1+zer,pos,neg) 
+    | isPos = (zer,1+pos,neg)
+    | isNeg = (zer,pos,1+neg)
     | otherwise = (zer,pos,neg)
     where 
         (zer,pos,neg) = nzp t
