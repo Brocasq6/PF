@@ -56,17 +56,23 @@ nzp :: [Int] -> (Int,Int,Int)
 nzp [] = ([],[],[])
 nzp (h:t)
     | isZero h = (1+zer,pos,neg) 
-    | isPos = (zer,1+pos,neg)
-    | isNeg = (zer,pos,1+neg)
+    | isPos h = (zer,1+pos,neg)
+    | isNeg h = (zer,pos,1+neg)
     | otherwise = (zer,pos,neg)
     where 
         (zer,pos,neg) = nzp t
+
+
+nzp2 :: [Int] -> (Int,Int,Int)
+nzp2 is = (lenght [i | i <- is, i < 0], length [i | i <- is, i == 0], length [i | i <- is, i > 0]) 
+
 {-
 3. Defina a fun¸c˜ao divMod :: Integral a => a -> a -> (a, a) que calcula simultane-
 amente a divis˜ao e o resto da divis˜ao inteira por subtrac¸c˜oes sucessivas.
 -}
+
 divMod :: Integral a => a -> a -> (a, a)
-divMod = undefined
+divMod = 
 
 {-
 4. Utilizando uma fun¸c˜ao auxiliar com um acumulador, optimize seguinte defini¸c˜ao recur-
@@ -128,9 +134,21 @@ intToStr n = undefined
 dente. Tente ainda, para cada caso, descobrir uma outra forma de obter o mesmo
 resultado.
 (a) [x | x <- [1..20], mod x 2 == 0, mod x 3 == 0]
+
+x = [6,12,18]
+
 (b) [x | x <- [y | y <- [1..20], mod y 2 == 0], mod x 3 == 0]
+
+x = [6,12,18]
+
 (c) [(x,y) | x <- [0..20], y <- [0..20], x+y == 30]
+
+x = [(10,20),(11,19),(12,18),(13,17),(14,16),(15,15),(16,14),(17,13),(18,12),(19,11),(20,10)]
+
 (d) [sum [y | y <- [1..x], odd y] | x <- [1..10]]
+
+x = [1,1,4,4,9,9,16,16,25,25]
+
 -}
 
 
@@ -139,7 +157,7 @@ resultado.
 
 --(a) [1,2,4,8,16,32,64,128,256,512,1024]
 
-
+[x | x <- [0..10], x = 2^x] 
 
 --(b) [(1,5),(2,4),(3,3),(4,2),(5,1)]
 
