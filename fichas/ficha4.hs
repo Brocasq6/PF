@@ -1,3 +1,4 @@
+Module ficha4 where
 import Data.Char (isAlpha,isDigit)
 
 {-
@@ -26,8 +27,11 @@ devolvendo um triplo com essa informa¸c˜ao. Certifique-se que a fun¸c˜ao que
 percorre a lista apenas uma vez.
 -}
 nzp :: [Int] -> (Int,Int,Int)
-nzp = undefined
-
+nzp [] = 
+nzp (h:t)
+    | isZero
+    | isPos
+    | 
 {-
 3. Defina a fun¸c˜ao divMod :: Integral a => a -> a -> (a, a) que calcula simultane-
 amente a divis˜ao e o resto da divis˜ao inteira por subtrac¸c˜oes sucessivas.
