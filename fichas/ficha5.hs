@@ -1,13 +1,16 @@
 module Ficha5 where
+import Data.List
+
+
 {-
-    1. Apresente defini¸c˜oes das seguintes fun¸c˜oes de ordem superior, j´a pr´e-definidas no Prelude
-    ou no Data.List:
+1. Apresente defini¸c˜oes das seguintes fun¸c˜oes de ordem superior, j´a pr´e-definidas no Prelude
+ou no Data.List:
 -}
 
 {-
-    (a) any :: (a -> Bool) -> [a] -> Bool que teste se um predicado ´e verdade para
-    algum elemento de uma lista; por exemplo:
-    any odd [1..10] == True
+(a) any :: (a -> Bool) -> [a] -> Bool que teste se um predicado ´e verdade para
+algum elemento de uma lista; por exemplo:
+any odd [1..10] == True
 -}
 
 
