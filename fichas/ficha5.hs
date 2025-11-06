@@ -25,11 +25,20 @@ duas listas usando uma fun¸c˜ao espec´ıfica; por exemplo:
 zipWith (+) [1,2,3,4,5] [10,20,30,40] == [11,22,33,44].
 -}
 
+zipWith :: (a->b->c) -> [a] -> [b] -> [c]
+zipWith funcao [] [] = []
+zipWith funcao _ [] = _
+zipWith funcao [] _ = _
+zipWith funcao (x:xs) (y:ys) = funcao x y : funcao xs ys
+
 {-
 (c) takeWhile :: (a->Bool) -> [a] -> [a] que determina os primeiros elementos
 da lista que satisfazem um dado predicado; por exemplo:
 takeWhile odd [1,3,4,5,6,6] == [1,3].
 -}
+
+takeWhile :: (a->Bool) -> [a] -> [a]
+takeWhile funcao l = undefined
 
 {-(d) dropWhile :: (a->Bool) -> [a] -> [a] que elimina os primeiros elementos da
 lista que satisfazem um dado predicado; por exemplo:
