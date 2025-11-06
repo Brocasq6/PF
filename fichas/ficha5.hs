@@ -51,9 +51,9 @@ dropWhile odd [1,3,4,5,6,6] == [4,5,6,6].
 dropWhile :: (a->Bool) -> [a] -> [a]
 dropWhile funcao [] = []
 dropWhile funcao (x:xs) = 
-    | funcao x = xs 
-    | othwerise = x : dropWhile funcao xs
-    
+    | funcao x = dropWhile f xs 
+    | othwerise = x : xs
+
 {-(e) span :: (a-> Bool) -> [a] -> ([a],[a]), que calcula simultaneamente os dois
 resultados anteriores. Note que apesar de poder ser definida `a custa das outras
 duas, usando a defini¸c˜ao
