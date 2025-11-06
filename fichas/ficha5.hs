@@ -42,13 +42,18 @@ takeWhile funcao [] = []
 takeWhile funcao (x:xs) (y:ys) =
     | funcao x = x : takeWhile funcao xs 
     | otherwise = []
-    
 
 {-(d) dropWhile :: (a->Bool) -> [a] -> [a] que elimina os primeiros elementos da
 lista que satisfazem um dado predicado; por exemplo:
 dropWhile odd [1,3,4,5,6,6] == [4,5,6,6].
 -}
 
+dropWhile :: (a->Bool) -> [a] -> [a]
+dropWhile funcao [] = []
+dropWhile funcao (x:xs) = 
+    | funcao x = xs 
+    | othwerise = x : dropWhile funcao xs
+    
 {-(e) span :: (a-> Bool) -> [a] -> ([a],[a]), que calcula simultaneamente os dois
 resultados anteriores. Note que apesar de poder ser definida `a custa das outras
 duas, usando a defini¸c˜ao
