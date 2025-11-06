@@ -29,7 +29,7 @@ zipWith :: (a->b->c) -> [a] -> [b] -> [c]
 zipWith funcao [] [] = []
 zipWith funcao _ [] = _
 zipWith funcao [] _ = _
-zipWith funcao (x:xs) (y:ys) = funcao x y : funcao xs ys
+zipWith funcao (x:xs) (y:ys) = funcao x y : zipWith funcao xs ys
 
 {-
 (c) takeWhile :: (a->Bool) -> [a] -> [a] que determina os primeiros elementos
