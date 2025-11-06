@@ -13,6 +13,11 @@ algum elemento de uma lista; por exemplo:
 any odd [1..10] == True
 -}
 
+any :: (a -> Bool) -> [a] -> Bool
+any predicado [] = False
+any predicado (x:xs)
+    | predicado x = False 
+    | otherwise = any predicado x
 
 {-
 (b) zipWith :: (a->b->c) -> [a] -> [b] -> [c] que combina os elementos de
