@@ -113,7 +113,17 @@ addMat :: Num a => Mat a -> Mat a -> Mat a
 addMat (l1:ls1) (l2:ls2) = zipWith (+) l1 l2 : addMat ls1 ls2 -- usamos a zipwith para adicioar a primeira lista e depois apenas chamamos recursivamente a funcao addMat
 
 -- (d) transpose :: Mat a -> Mat a que calcula a transposta de uma matriz.
+primeiraCol :: Mat a -> [a]
+primeiraCol m = map head m
 
+restantesCol :: Mat a -> Mat a
+restantesCol m = map tail m
+
+transpose :: Mat a -> Mat a
+transpose [] = []
+transpose m =
+    | map(head m) == [] = []
+    | otherwise = primeiraCol m : transpose (restoCol m)
 -- (e) multMat :: Num a => Mat a -> Mat a -> Mat a que calcula o produto de duas matrizes.
 
 -- (f) zipWMat :: (a -> b -> c) -> Mat a -> Mat b -> Mat c que, `a semelhan¸ca do que acontece com a fun¸c˜ao zipWith,
