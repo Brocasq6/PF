@@ -38,7 +38,11 @@ takeWhile odd [1,3,4,5,6,6] == [1,3].
 -}
 
 takeWhile :: (a->Bool) -> [a] -> [a]
-takeWhile funcao l = undefined
+takeWhile funcao [] = []
+takeWhile funcao (x:xs) (y:ys) =
+    | funcao x = x : takeWhile funcao xs 
+    | otherwise = []
+    
 
 {-(d) dropWhile :: (a->Bool) -> [a] -> [a] que elimina os primeiros elementos da
 lista que satisfazem um dado predicado; por exemplo:
