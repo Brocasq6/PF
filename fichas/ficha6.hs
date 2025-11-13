@@ -1,7 +1,7 @@
 module Ficha6 where
     
 data BTree a = Empty
-| Node a (BTree a) (BTree a)
+    | Node a (BTree a) (BTree a)
 deriving Show
 
 
@@ -74,8 +74,9 @@ contaNodos (Node _ e d) = 1 + (contaNodos e) + (contaNodos d)
 -- | (c) folhas :: BTree a -> Int, que calcula o n´umero de folhas (i.e., nodos sem descendentes) da ´arvore.
 
 folhas :: BTree a -> Int
-folhas Empty =
-folhas (Node _ e d) =  
+folhas Empty = 0
+folhas (Node _ Empty Empty) = 1
+folhas (Node _ e d) = 1 + (folhas e) + (folhas d) 
 
 -- | (d) prune :: Int -> BTree a -> BTree a, que remove de uma ´arvore todos os elementos a partir de uma determinada profundidade.
 
