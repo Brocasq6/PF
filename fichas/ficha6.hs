@@ -92,10 +92,11 @@ por onde esse caminho passa.
 -}
 
 path :: [Bool] -> BTree a -> [a]
+path l Empty  = []
 path [] _ = []
-path (h:t) (Node _ e d)
-    | h == True = path t (Node d)
-    | otherwise = path t (Node e)
+path (h:t) (Node r e d)
+    | h == True = r : path t d
+    | otherwise = r : path t e
 
 -- | (f) mirror :: BTree a -> BTree a, que d´a a ´arvore sim´etrica.
 
