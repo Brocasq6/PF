@@ -115,9 +115,9 @@ mirror (Node r e d) = Node r (mirror d) (mirror e)
 
 zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c
 zipWithBT f (Node r1 e1 d1) (Node r2 e2 d2) =  
-    (Node f r1 r2) 
-        (zipWithBT f e1 e2) 
-        (zipWithBT f d1 d2)
+    Node (f r1 r2) 
+         (zipWithBT f e1 e2) 
+         (zipWithBT f d1 d2)
 zipWithBT _ _ _ = Empty
 
 
@@ -152,7 +152,9 @@ menor elemento de uma ´arvore bin´aria de procura n˜ao vazia.
 -}
 
 semMinimo :: Ord a => BTree a -> BTree a
-semMinimo = undefined
+semMinimo (Node _ Empty d) = d
+semMinimo (Node _ e _) = semMinimo e
+
 
 {-
 (c) Defina uma fun¸c˜ao minSmin :: Ord a => BTree a -> (a,BTree a) que calcula,
