@@ -13,7 +13,8 @@ altura Node _ e d = 1 + max(altura e,altura d)
 -- | (b) contaNodos :: BTree a -> Int que calcula o n´umero de nodos da ´arvore.
 
 contaNodos :: BTree a -> Int 
-contaNodos = undefined
+contaNodos Empty = 0
+contaNodos (Node _ e d) = 1 + (contaNodos e) + (contaNodos d)
 
 -- | (c) folhas :: BTree a -> Int, que calcula o n´umero de folhas (i.e., nodos sem descendentes) da ´arvore.
 
