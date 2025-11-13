@@ -163,6 +163,7 @@ com uma ´unica travessia da ´arvore o resultado das duas fun¸c˜oes anteriore
 
 minSmin :: Ord a => BTree a -> (a,BTree a)
 minSmin = undefined
+
 {-
 (d) Defina uma fun¸c˜ao remove :: Ord a => a -> BTree a -> BTree a que remove
 um elemento de uma ´arvore bin´aria de procura, usando a fun¸c˜ao anterior.
@@ -170,7 +171,7 @@ um elemento de uma ´arvore bin´aria de procura, usando a fun¸c˜ao anterior.
 
 remove :: Ord a => a -> BTree a -> BTree a
 remove x Empty = Empty
-remove x Node r e d = 
+remove x (Node r e d) = 
     | x < r = Node r e (remove x d)
     | x > r = Node r (remove x e) d
     | otherwise = undefined  
