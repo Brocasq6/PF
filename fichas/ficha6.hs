@@ -114,7 +114,10 @@ mirror (Node r e d) = Node r (mirror d) (mirror e)
 -- | (g) zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c que generaliza a fun¸c˜ao zipWith para ´arvores bin´arias.
 
 zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c
-zipWithBT f (Node r1 e1 d1) (Node r2 e2 d2) =  (Node f r1 r2) (zipWithBT f e1 e2) (zipWithBT f d1 d2)
+zipWithBT f (Node r1 e1 d1) (Node r2 e2 d2) =  
+    (Node f r1 r2) 
+        (zipWithBT f e1 e2) 
+        (zipWithBT f d1 d2)
 zipWithBT _ _ _ = Empty
 
 
