@@ -1,8 +1,8 @@
 module Ficha6 where
     
 data BTree a = Empty
-    | Node a (BTree a) (BTree a)
-deriving Show
+             | Node a (BTree a) (BTree a)
+             deriving Show
 
 
 -- exemplos de arvores binarias para testarem o vosso codigo --
