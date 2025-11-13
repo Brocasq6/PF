@@ -169,4 +169,8 @@ um elemento de uma ´arvore bin´aria de procura, usando a fun¸c˜ao anterior.
 -}
 
 remove :: Ord a => a -> BTree a -> BTree a
-remove = undefined
+remove x Empty = Empty
+remove x Node r e d = 
+    | x < r = Node r e (remove x d)
+    | x > r = Node r (remove x e) d
+    | otherwise = undefined  
