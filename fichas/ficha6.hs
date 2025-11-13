@@ -92,8 +92,8 @@ por onde esse caminho passa.
 -}
 
 path :: [Bool] -> BTree a -> [a]
-path l Empty  = []
-path [] _ = []
+path _ Empty  = []
+path [] (Node r _ _) = [r]
 path (h:t) (Node r e d)
     | h == True = r : path t d
     | otherwise = r : path t e
@@ -101,7 +101,8 @@ path (h:t) (Node r e d)
 -- | (f) mirror :: BTree a -> BTree a, que d´a a ´arvore sim´etrica.
 
 mirror :: BTree a -> BTree a
-mirror = undefined
+mirror Empty = Empty
+mirror (Node r e d) = Node r (mirror d) (mirror e)
 
 -- | (g) zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c que generaliza a fun¸c˜ao zipWith para ´arvores bin´arias.
 zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c
