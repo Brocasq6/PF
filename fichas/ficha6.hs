@@ -46,6 +46,18 @@ t5 = Node 8
                 (Node 13 Empty Empty)
                 Empty))
 
+t_stor :: BTree Int
+t_stor = Node 7
+            (Node 8
+                (Node 5 Empty Empty)
+                (Node 3 Empty Empty))
+            (Node 12
+                Empty
+                (Node 4
+                    (Node 1 Empty Empty)
+                    Empty))
+
+
 
 -- | (a) altura :: BTree a -> Int que calcula a altura da ´arvore.
 
@@ -62,7 +74,8 @@ contaNodos (Node _ e d) = 1 + (contaNodos e) + (contaNodos d)
 -- | (c) folhas :: BTree a -> Int, que calcula o n´umero de folhas (i.e., nodos sem descendentes) da ´arvore.
 
 folhas :: BTree a -> Int
-folhas = undefined
+folhas Empty =
+folhas (Node _ e d) =  
 
 -- | (d) prune :: Int -> BTree a -> BTree a, que remove de uma ´arvore todos os elementos a partir de uma determinada profundidade.
 
