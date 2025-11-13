@@ -57,8 +57,15 @@ t_stor = Node 7
                     (Node 1 Empty Empty)
                     Empty))
 
-
-
+t_stor_procura :: BTree Int
+t_stor_procura = Node 8
+                    (Node 5
+                        (Node 3 Empty Empty)
+                        (Node 7 Empty Empty))
+                    (Node 12
+                        (Node 10 Empty Empty)
+                        (Node 14 Empty Empty))
+                        
 -- | (a) altura :: BTree a -> Int que calcula a altura da ´arvore.
 
 altura :: BTree a -> Int
