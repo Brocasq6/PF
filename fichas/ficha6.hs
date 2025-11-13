@@ -63,7 +63,7 @@ t_stor = Node 7
 
 altura :: BTree a -> Int
 altura (Empty)  = 0
-altura (Node _ e d) = 1 + max(altura e,altura d) 
+altura (Node _ e d) = 1 + max (altura e) (altura d) 
 
 -- | (b) contaNodos :: BTree a -> Int que calcula o n´umero de nodos da ´arvore.
 
@@ -76,12 +76,14 @@ contaNodos (Node _ e d) = 1 + (contaNodos e) + (contaNodos d)
 folhas :: BTree a -> Int
 folhas Empty = 0
 folhas (Node _ Empty Empty) = 1
-folhas (Node _ e d) = 1 + (folhas e) + (folhas d) 
+folhas (Node _ e d) = (folhas e) + (folhas d) 
 
 -- | (d) prune :: Int -> BTree a -> BTree a, que remove de uma ´arvore todos os elementos a partir de uma determinada profundidade.
 
 prune :: Int -> BTree a -> BTree a
-prune = undefined
+prune _ Empty = Empty 
+prune 1 (Node r e d) = Node r Empty Empty
+prune x (Node r e d) = Node r (prune (x-1) e) (prune (x-1) d)
 
 {-
 (e) path :: [Bool] -> BTree a -> [a], que dado um caminho (False corresponde
