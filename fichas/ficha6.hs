@@ -105,8 +105,11 @@ mirror Empty = Empty
 mirror (Node r e d) = Node r (mirror d) (mirror e)
 
 -- | (g) zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c que generaliza a fun¸c˜ao zipWith para ´arvores bin´arias.
+
 zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c
-zipWithBT = undefined
+zipWithBT f (Node r1 e1 d1) (Node r2 e2 d2) =  (Node f r1 r2) (zipWithBT f e1 e2) (zipWithBT f d1 d2)
+zipWithBT _ _ _ = Empty
+
 
 {-
 (h) unzipBT :: BTree (a,b,c) -> (BTree a,BTree b,BTree c), que generaliza a
@@ -115,6 +118,12 @@ fun¸c˜ao unzip (neste caso de triplos) para ´arvores bin´arias.
 
 unzipBT :: BTree (a,b,c) -> (BTree a,BTree b,BTree c)
 unzipBT = undefined
+
+
+
+
+
+------------------------------- ARVORES BINÁRIAS DE PROCURA -------------------------------
 
 -- | 2. Defina as seguintes fun¸c˜oes, assumindo agora que as ´arvores s˜ao bin´arias de procura:
 
