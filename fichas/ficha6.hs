@@ -4,6 +4,49 @@ data BTree a = Empty
 | Node a (BTree a) (BTree a)
 deriving Show
 
+
+-- exemplos de arvores binarias para testarem o vosso codigo --
+-- 1. Árvore vazia
+t1 :: BTree Int
+t1 = Empty
+
+
+-- 2. Árvore com apenas um nó
+t2 :: BTree Int
+t2 = Node 5 Empty Empty
+
+
+-- 3. Árvore pequena e completa
+t3 :: BTree Int
+t3 = Node 1
+        (Node 2 Empty Empty)
+        (Node 3 Empty Empty)
+
+
+-- 4. Árvore mais profunda à esquerda
+t4 :: BTree Int
+t4 = Node 10
+        (Node 5
+            (Node 2 Empty Empty)
+            Empty)
+        (Node 15 Empty Empty)
+
+
+-- 5. Árvore não balanceada com vários níveis
+t5 :: BTree Int
+t5 = Node 8
+        (Node 3
+            (Node 1 Empty Empty)
+            (Node 6
+                (Node 4 Empty Empty)
+                (Node 7 Empty Empty)))
+        (Node 10
+            Empty
+            (Node 14
+                (Node 13 Empty Empty)
+                Empty))
+
+
 -- | (a) altura :: BTree a -> Int que calcula a altura da ´arvore.
 
 altura :: BTree a -> Int
