@@ -124,8 +124,12 @@ transpose [] = []
 transpose m =
     | map(head m) == [] = []
     | otherwise = primeiraCol m : transpose (restoCol m)
+
 -- (e) multMat :: Num a => Mat a -> Mat a -> Mat a que calcula o produto de duas matrizes.
 
+multMat :: Num a => Mat a -> Mat a -> Mat a
+multMat [] [] = []
+multMat 
 -- (f) zipWMat :: (a -> b -> c) -> Mat a -> Mat b -> Mat c que, `a semelhan¸ca do que acontece com a fun¸c˜ao zipWith,
 --combina duas matrizes. Use essa fun¸c˜ao para definir uma fun¸c˜ao que adiciona duas matrizes.
 
