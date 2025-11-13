@@ -140,7 +140,8 @@ elemento de uma ´arvore bin´aria de procura n˜ao vazia.
 -}
 
 minimo :: Ord a => BTree a -> a
-minimo = undefined
+minimo (Node r Empty _) = r
+minimo (Node _ e _) = minimo e
 
 {-
 (b) Defina uma fun¸c˜ao semMinimo :: Ord a => BTree a -> BTree a que remove o
