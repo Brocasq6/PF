@@ -62,8 +62,8 @@ t_stor = Node 7
 -- | (a) altura :: BTree a -> Int que calcula a altura da ´arvore.
 
 altura :: BTree a -> Int
-altura Empty  = 0
-altura Node _ e d = 1 + max(altura e,altura d) 
+altura (Empty)  = 0
+altura (Node _ e d) = 1 + max(altura e,altura d) 
 
 -- | (b) contaNodos :: BTree a -> Int que calcula o n´umero de nodos da ´arvore.
 
