@@ -1,8 +1,10 @@
 module Cinquenta_Q where
 
--- 1  Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromTo :: Int -> Int ->
--- [Int] que constr´oi a lista dos n´umeros inteiros compreendidos entre dois limites.
--- Por exemplo, enumFromTo 1 5 corresponde `a lista [1,2,3,4,5]) 
+{-
+1  Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromTo :: Int -> Int ->
+[Int] que constr´oi a lista dos n´umeros inteiros compreendidos entre dois limites.
+Por exemplo, enumFromTo 1 5 corresponde `a lista [1,2,3,4,5]) 
+-}
 
 {-
 2 Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromThenTo :: Int -> Int
