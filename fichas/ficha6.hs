@@ -162,7 +162,10 @@ com uma ´unica travessia da ´arvore o resultado das duas fun¸c˜oes anteriore
 -}
 
 minSmin :: Ord a => BTree a -> (a,BTree a)
-minSmin = undefined
+minSmin (Node r Empty d) = (x,d)
+minSmin (Node r e d) = 
+    let (m,e') = minSmin e
+    in (m, Node x e' d)
 
 {-
 (d) Defina uma fun¸c˜ao remove :: Ord a => a -> BTree a -> BTree a que remove
