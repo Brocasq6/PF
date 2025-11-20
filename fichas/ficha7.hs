@@ -1,6 +1,11 @@
 Module ficha7 where
 
-
+data ExpInt = Const Int
+            | Simetrico ExpInt
+            | Mais ExpInt ExpInt
+            | Menos ExpInt ExpInt
+            | Mult ExpInt ExpInt
+            
 {-
 1. Considere o seguinte tipo para representar expressões inteiras.
 Os termos deste tipo ExpInt podem ser vistos como árvores cujas folhas são inteiros e
