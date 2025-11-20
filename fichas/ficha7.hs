@@ -5,7 +5,7 @@ data ExpInt = Const Int
             | Mais ExpInt ExpInt
             | Menos ExpInt ExpInt
             | Mult ExpInt ExpInt
-            
+
 {-
 1. Considere o seguinte tipo para representar expressões inteiras.
 Os termos deste tipo ExpInt podem ser vistos como árvores cujas folhas são inteiros e
@@ -17,12 +17,25 @@ cujos nodos (não folhas) são operadores.
 calcula o seu valor.
 -}
 
+calcula :: ExpInt -> Int
+calcula (Const x)     = x
+calcula (Simetrico x) = _ (calcula x)
+calcula (Mais x y)    = (calcula x) + (calcula y)
+calcula (Menos x y)   = (calcula x) - (calcula y)
+calcula (Mult  x y)   = (calcula x) * (calcula y)
+
 {-
 (b) Defina uma função infixa :: ExpInt -> String de forma a que
 infixa (Mais (Const 3) (Menos (Const 2) (Const 5))) dê como resultado
 "(3 + (2 - 5))".
 -}
 
+infixa :: ExpInt -> String
+infixa (Const x)        = show x
+infixa (Simetrico x)    = "-" ++ "(" ++ infixa x ++ ")"
+infixa (Mais x1 x2)     = "(" ++ infixa x1 ++ "+" ++ infixa x2 ++ ")"
+infixa (Menos x1 x2)    = "(" ++ infixa x1 ++ "-" ++ infixa x2 ++ ")"
+infixa (Mult x1 x2)     = "(" ++ infixa x1 ++ "*" ++ infixa x2 ++ ")"
 {-
 (c) Defina uma outra função de conversão para strings posfixa :: ExpInt -> String
 de forma a que quando aplicada à expressão acima dê como resultado "3 2 5 -
