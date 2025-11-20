@@ -1,10 +1,4 @@
-Module ficha7 where
-
-data ExpInt = Const Int
-            | Simetrico ExpInt
-            | Mais ExpInt ExpInt
-            | Menos ExpInt ExpInt
-            | Mult ExpInt ExpInt
+module Ficha7 where
 
 {-
 1. Considere o seguinte tipo para representar expressões inteiras.
@@ -16,10 +10,16 @@ cujos nodos (não folhas) são operadores.
 (a) Defina uma função calcula :: ExpInt -> Int que, dada uma destas expressões
 calcula o seu valor.
 -}
+data ExpInt 
+    = Const Int
+    | Simetrico ExpInt
+    | Mais ExpInt ExpInt
+    | Menos ExpInt ExpInt
+    | Mult ExpInt ExpInt
 
 calcula :: ExpInt -> Int
 calcula (Const x)     = x
-calcula (Simetrico x) = _ (calcula x)
+calcula (Simetrico x) = - (calcula x)
 calcula (Mais x y)    = (calcula x) + (calcula y)
 calcula (Menos x y)   = (calcula x) - (calcula y)
 calcula (Mult  x y)   = (calcula x) * (calcula y)
