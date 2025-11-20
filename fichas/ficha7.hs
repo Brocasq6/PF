@@ -62,12 +62,12 @@ Defina as seguintes funções sobre estas árvores:
 --(a) soma :: Num a => RTree a -> a que soma os elementos da árvore.
 
 soma :: Num a => RTree a -> a
-soma = undefined
+soma (R x l) = x + sum(map soma l)
 
 --(b) altura :: RTree a -> Int que calcula a altura da árvore.
 
 altura :: RTree a -> Int
-altura = undefined
+altura (R x l) = 1 + maximum(map altura l)
 
 {-
 (c) prune :: Int -> RTree a -> RTree a que remove de uma árvore todos os ele-
