@@ -86,3 +86,48 @@ mirror = undefined
 
 postorder :: RTree a -> [a]
 postorder = undefined
+
+---------------------- Exercicio 3 ----------------------
+
+data BTree a = Empty | Node a (BTree a) (BTree a)
+
+{-
+3. Relembre a definição de árvores binárias apresentada na ficha anterior:
+Nestas árvores a informação está nos nodos (as extermidades da árvore têm apenas
+uma marca – Empty). É também habitual definirem-se árvores em que a informação
+está apenas nas extermidades (leaf trees):
+-}
+
+data LTree a = Tip a | Fork (LTree a) (LTree a)
+
+
+-- (a) ltSum :: Num a => LTree a -> a que soma as folhas de uma árvore.
+
+{-
+(b) listaLT :: LTree a -> [a] que lista as folhas de uma árvore (da esquerda para
+a direita).
+-}
+
+-- (c) ltHeight :: LTree a -> Int que calcula a altura de uma árvore.
+
+
+---------------------- Exercicio 4 ----------------------
+
+-- 4. Estes dois conceitos podem ser agrupados num só, definindo o seguinte tipo:
+
+data FTree a b = Leaf b | No a (FTree a b) (FTree a b)
+{-
+São as chamadas full trees onde a informação está não só nos nodos, como também nas
+folhas (note que o tipo da informação nos nodos e nas folhas não tem que ser o mesmo).
+-}
+
+{-
+(a) Defina a função splitFTree :: FTree a b -> (BTree a, LTree b) que separa
+uma árvore com informação nos nodos e nas folhas em duas árvores de tipos
+diferentes.
+-}
+
+{-
+(b) Defina ainda a função joinTrees :: BTree a -> LTree b -> Maybe (FTree a b)
+que sempre que as árvores sejam compatı́veis as junta numa só.
+-}
