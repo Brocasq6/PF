@@ -51,6 +51,8 @@ posFixa (Menos x1 x2)   = (infixa x1) ++ (infixa x2) ++ "-"
 posFixa (Mult x1 x2)    = (infixa x1) ++ (infixa x2) ++ "*"
 
 
+---------------------- Exercicio 2 ----------------------
+
 {-
 2. Considere o seguinte tipo para representar árvores irregulares (rose trees).
 data RTree a = R a [RTree a]
@@ -59,13 +61,28 @@ Defina as seguintes funções sobre estas árvores:
 
 --(a) soma :: Num a => RTree a -> a que soma os elementos da árvore.
 
+soma :: Num a => RTree a -> a
+soma = undefined
+
 --(b) altura :: RTree a -> Int que calcula a altura da árvore.
+
+altura :: RTree a -> Int
+altura = undefined
 
 {-
 (c) prune :: Int -> RTree a -> RTree a que remove de uma árvore todos os ele-
 mentos a partir de uma determinada profundidade.
 -}
 
+prune :: Int -> RTree a -> RTree a
+prune = undefined
+
 --(d) mirror :: RTree a -> RTree a que gera a árvore simétrica.
 
+mirror :: RTree a -> RTree a
+mirror = undefined
+
 --(e) postorder :: RTree a -> [a] que corresponde à travessia postorder da árvore.
+
+postorder :: RTree a -> [a]
+postorder = undefined
