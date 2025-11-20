@@ -1,4 +1,4 @@
-Module ficha1 where
+module Ficha1 where
 import Data.Char
 -- length l: o n´umero de elementos da lista l
 -- head l: a cabe¸ca da lista (n˜ao vazia) l

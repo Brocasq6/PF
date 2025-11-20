@@ -1,4 +1,4 @@
-Module ficha3 where
+module Ficha3 where
 -- Exercicio 3
 
 data Contacto = Casa Integer
