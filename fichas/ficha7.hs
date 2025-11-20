@@ -36,11 +36,20 @@ infixa (Simetrico x)    = "-" ++ "(" ++ infixa x ++ ")"
 infixa (Mais x1 x2)     = "(" ++ infixa x1 ++ "+" ++ infixa x2 ++ ")"
 infixa (Menos x1 x2)    = "(" ++ infixa x1 ++ "-" ++ infixa x2 ++ ")"
 infixa (Mult x1 x2)     = "(" ++ infixa x1 ++ "*" ++ infixa x2 ++ ")"
+
 {-
 (c) Defina uma outra função de conversão para strings posfixa :: ExpInt -> String
 de forma a que quando aplicada à expressão acima dê como resultado "3 2 5 -
 +".
 -}
+
+posFixa :: ExpInt -> String
+posFixa (Const x)       = show x
+posFixa (Simetrico x)   = "-" ++ posFixa x
+posFixa (Mais x1 x2)    = (infixa x1) ++ (infixa x2) ++ "+"
+posFixa (Menos x1 x2)   = (infixa x1) ++ (infixa x2) ++ "-"     
+posFixa (Mult x1 x2)    = (infixa x1) ++ (infixa x2) ++ "*"
+
 
 {-
 2. Considere o seguinte tipo para representar árvores irregulares (rose trees).
