@@ -174,4 +174,11 @@ remove x Empty = Empty
 remove x (Node r e d) = 
     | x < r = Node r e (remove x d)
     | x > r = Node r (remove x e) d
-    | otherwise = undefined  
+    | x == r = case (e,d) of 
+        (Empty , _) = 
+        (_ , Empty) = 
+        _ = let m = minimo d
+                d' = semMinimo d 
+            in Node m e d' 
+
+
