@@ -178,10 +178,12 @@ remove x (Node r e d) =
     | x < r = Node r e (remove x d)
     | x > r = Node r (remove x e) d
     | x == r = case (e,d) of 
-        (Empty , _) = 
-        (_ , Empty) = 
+        (Empty , _) -> d
+        (_ , Empty) -> e 
         _ = let m = minimo d
                 d' = semMinimo d 
             in Node m e d' 
+
+
 
 
