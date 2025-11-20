@@ -88,6 +88,7 @@ sortOn fst [(3,1),(1,2),(2,5)] == [(1,2),(2,5),(3,1)].
 -}
 
 sortOn :: Ord b => (a -> b) -> [a] -> [a]
+sortOn = undefined
 
 insert :: Ord b 
 insert _ x [] = [x]
@@ -129,12 +130,19 @@ transpose m =
 
 multMat :: Num a => Mat a -> Mat a -> Mat a
 multMat [] [] = []
-multMat 
+multMat = undefined
+
 -- (f) zipWMat :: (a -> b -> c) -> Mat a -> Mat b -> Mat c que, `a semelhan¸ca do que acontece com a fun¸c˜ao zipWith,
 --combina duas matrizes. Use essa fun¸c˜ao para definir uma fun¸c˜ao que adiciona duas matrizes.
 
+zipWMat :: (a -> b -> c) -> Mat a -> Mat b -> Mat c
+zipWith = undefined
+
 -- (g) triSup :: Num a => Mat a -> Bool que testa se uma matriz quadrada ´e triangular superior 
 -- (i.e., todos os elementos abaixo da diagonal s˜ao nulos).
+
+triSup :: Num a => Mat a -> Bool
+triSup = undefined
 
 {-
 (h) rotateLeft :: Mat a -> Mat a que roda uma matriz 90o para a esquerda. Por
@@ -145,3 +153,6 @@ exemplo, o resultado de rodar a matriz acima apresentada deve corresponder `a ma
  [1 0 0]]
 
 -}
+
+rotateLeft :: Mat a -> Mat a
+rotateLeft = undefined

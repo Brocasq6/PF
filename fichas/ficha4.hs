@@ -19,15 +19,17 @@ digitAlpha (h:t)
     where 
         (letras,digitos) = digitAlpha t
 
--- digitAlphaSaraiva :: String -> (String,String)
--- digitAlphaSaraiva s = digitAlphaAc s ([],[]) 
---     where 
---         digitAlphaAC :: String -> (String,String) -> (String,String)
---         digitAlphaAc [] ac = ac
---         digitAlphaAc (h:t) (ls,ds)
---             | isAlpha h = digitAlphaAc t (ls++[h],ds)
---             | isDigit h = digitAlphaAc t (ls,ds++[h])
---             | otherwise = digitAlphaAc t (ls,ds)
+{-
+digitAlphaSaraiva :: String -> (String,String)
+digitAlphaSaraiva s = digitAlphaAc s ([],[]) 
+    where 
+        digitAlphaAC :: String -> (String,String) -> (String,String)
+        digitAlphaAc [] ac = ac
+        digitAlphaAc (h:t) (ls,ds)
+            | isAlpha h = digitAlphaAc t (ls++[h],ds)
+            | isDigit h = digitAlphaAc t (ls,ds++[h])
+            | otherwise = digitAlphaAc t (ls,ds)
+-}
 
 {-
 2. Defina a fun¸c˜ao nzp :: [Int] -> (Int,Int,Int) que, dada uma lista de inteiros,
@@ -157,23 +159,21 @@ x = [1,1,4,4,9,9,16,16,25,25]
 
 --(a) [1,2,4,8,16,32,64,128,256,512,1024]
 
-[x | x <- [0..10], x = 2^x] 
+[2^x | x <- [0..10]]
 
 --(b) [(1,5),(2,4),(3,3),(4,2),(5,1)]
 
-
-
+[(x, 6-x) | x <- [1..5]]
 
 --(c) [[1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5]]
 
-
-
+[[1..n] | n <- [1..5]]
 
 --(d) [[1],[1,1],[1,1,1],[1,1,1,1],[1,1,1,1,1]]
 
-
-
+[replicate n 1 | n <- [1..5]]
 
 --(e) [1,2,6,24,120,720]
 
+[product [1..n] | n <- [1..6]]
 
