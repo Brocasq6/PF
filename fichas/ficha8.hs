@@ -22,8 +22,21 @@ showExp (Mais a b)      = "(" ++ (showExp a) ++ "+" ++ (showExp b) ++ ")"
 showExp (Menos a b)     = "(" ++ (showExp a) ++ "-" ++ (showExp b) ++ ")"
 showExp (Mult a b)      = "(" ++ (showExp a) ++ "*" ++ (showExp b) ++ ")"
 
+instance show a => snow(Exp a) where
+    show = showExp
+
+calcula :: Num a => Exp a -> a 
+calcula (Const a)        = a
+calcula (Simetrico a)    = - (calcula a)
+calcula (Mais a b)       = calcula a + calcula b    
+calcula (Menos a b)      = calcula a - calcula b
+calcula (Mult a b)       = calcula a * calcula b    
+
+
 
 -- (b) Declare Exp a como uma instˆancia de Eq.
 
+eqExp :: Eq a => Exp a -> Exp a -> Bool
+eqExp (Const a) (Const b)             = calcula a == calcula b
 
 -- (c) Declare Exp a como instˆancia da classe Num.
