@@ -9,10 +9,6 @@ import Data.Char
 -- mod x y: o resto da divis˜ao inteira de x por y
 
 ----------------------------------------------------------------------------------
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Use camelCase" #-}
-{-# OPTIONS_GHC -Wno-tabs #-}
-import Data.Time.Format.ISO8601 (yearFormat)
 
 perimetro :: Float -> Float
 perimetro l = 2 * 3.14 * l
