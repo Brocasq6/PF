@@ -14,7 +14,14 @@ data Exp a = Const a
            | Mult (Exp a) (Exp a)
 
 -- (a) Declare Exp a como uma instˆancia de Show.
-a
+
+showExp :: Show a => Exp a -> String
+showExp (Const a )      = show a
+showExp (Simetrico a)   = "-" ++ (showExp a)
+showExp (Mais a b)      = "(" ++ (showExp a) ++ "+" ++ (showExp b) ++ ")"
+showExp (Menos a b)     = "(" ++ (showExp a) ++ "-" ++ (showExp b) ++ ")"
+showExp (Mult a b)      = "(" ++ (showExp a) ++ "*" ++ (showExp b) ++ ")"
+
 
 -- (b) Declare Exp a como uma instˆancia de Eq.
 
