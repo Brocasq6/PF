@@ -7,7 +7,10 @@ Por exemplo, enumFromTo 1 5 corresponde `a lista [1,2,3,4,5])
 -}
 
 enumFromTo :: Int -> Int -> [Int]
-enumFromTo = undefined
+enumFromTo x y = 
+    | x < y = []
+    | x == y = [y]
+    | otherwise = x : enumFromTo x-1 y
 
 {-
 2 Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromThenTo :: Int -> Int
