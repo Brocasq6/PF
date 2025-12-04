@@ -1,14 +1,10 @@
 module Ficha9 where
-import System.Random 
 
-randomIO :: Random a => IO 
-randomRIO :: Random a => (a,a) -> IO
-
-dialogo :: String IO -> IO
-diolog s =  do 
+dialogo :: String -> IO String
+dialogo s = do
     putStr s
-    r <- getLine
-    return r 
+    getLine
+
 
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
@@ -18,10 +14,21 @@ fib 1 = 1
 fib n = fib(n-1) + fib(n-2)
 
 fibonacci :: IO ()
-fibonacci s = do
-    n <- dialogo "Introduz o numero de fibonacci que queres calcular: "
+fibonacci = do
+    n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
     let r = fib (read n)
-    putStrLn ("o resultado é " ++ show r)
+    putStrLn ("O resultado é " ++ show r)
+
+calculaFib :: IO()
+calculaFib = do 
+    n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
+    i <- read n
+    if i < 0 then putStrLn "o Fib nao se encontra definido para valores menores que zero"
+    else do 
+        r <- fib i
+        putStrLn "o fib de " ++ n ++ "é" ++ show i 
+    
+
 
 
 
