@@ -38,7 +38,15 @@ fib_negativos = do
 
 --------------------------------------- FICHA 9 ---------------------------------------
 import System.Random
+randomIO :: Random a => IO
+randomRIO :: Random a => (a,a) -> IO
 
+dataAl :: IO (Int,Int,Int)
+dataAl = do
+    dia <- randomIO (1,31)
+    mes <- randomIO (1,12)
+    ano <- randomIO (2000,2025)
+    return(dia,mes,ano)
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
 tecla ´e pressionada ´e apresentado um n´umero aleat´orio entre 1 e 90. Obviamente,
@@ -48,6 +56,7 @@ gerados os 90 n´umeros diferentes.
 
 bingo :: IO() 
 bingo = do
+
 
 {-
 (b) mastermind :: IO () que implementa uma variante do jogo de descodifica¸c˜ao de
