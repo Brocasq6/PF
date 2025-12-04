@@ -37,6 +37,7 @@ fib_negativos = do
 
 
 --------------------------------------- FICHA 9 ---------------------------------------
+import System.Random
 
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
