@@ -8,28 +8,29 @@ dialogo s = do
 
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
-fib :: Int -> Int
-fib 0 = 0 
-fib 1 = 1
-fib n = fib(n-1) + fib(n-2)
+fib_normal :: Int -> Int
+fib_normal 0 = 0 
+fib_normal 1 = 1
+fib_normal n = fib(n-1) + fib(n-2)
 
-fibonacci :: IO ()
-fibonacci = do
+fib_IO :: IO ()
+fib_IO = do
     n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
-    let r = fib (read n)
+    let r = fib_normal (read n)
     putStrLn ("O resultado é " ++ show r)
 
-calculaFib :: IO()
-calculaFib = do 
+fib_negativos :: IO ()
+fib_negativos = do
     n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
-    i <- read n
-    if i < 0 then putStrLn "o Fib nao se encontra definido para valores menores que zero"
-    else do 
-        r <- fib i
-        putStrLn "o fib de " ++ n ++ "é" ++ show i 
+    let i = read n
+    if i < 0
+        then putStrLn "O Fib não se encontra definido para valores menores que zero"
+        else do
+            let r = fib_normal i
+            putStrLn ("O Fib de " ++ n ++ " é " ++ show r)
     
 
-
+ 
 
 
 
