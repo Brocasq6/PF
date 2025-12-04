@@ -12,8 +12,17 @@ diolog s =  do
 
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
-fibonacci :: String IO -> IO
-fibonacci s = undefined
+fib :: Int -> Int
+fib 0 = 0 
+fib 1 = 1
+fib n = fib(n-1) + fib(n-2)
+
+fibonacci :: IO ()
+fibonacci s = do
+    n <- dialogo "Introduz o numero de fibonacci que queres calcular: "
+    let r = fib (read n)
+    putStrLn ("o resultado é " ++ show r)
+
 
 
 {-
