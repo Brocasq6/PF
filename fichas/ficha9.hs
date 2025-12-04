@@ -5,9 +5,16 @@ randomIO :: Random a => IO
 randomRIO :: Random a => (a,a) -> IO
 
 dialogo :: String IO -> IO
-diolog s =  do putStr s
-            r <- getline
-            return r 
+diolog s =  do 
+    putStr s
+    r <- getLine
+    return r 
+
+-- calcula a funcao fibonacci de um nº de lido do teclado
+
+fibonacci :: String IO -> IO
+fibonacci s = 
+
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
 tecla ´e pressionada ´e apresentado um n´umero aleat´orio entre 1 e 90. Obviamente,
