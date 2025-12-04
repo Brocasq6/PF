@@ -13,7 +13,8 @@ diolog s =  do
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
 fibonacci :: String IO -> IO
-fibonacci s = 
+fibonacci s = undefined
+
 
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
