@@ -1,5 +1,5 @@
 module Ficha9 where
-
+import System.Random
 --------------------------------------- "funcoes de Introducao aos IO'S do professor Saraiva" ---------------------------------------
 
 dialogo :: String -> IO String
@@ -13,7 +13,7 @@ dialogo s = do
 fib_normal :: Int -> Int
 fib_normal 0 = 0 
 fib_normal 1 = 1
-fib_normal n = fib(n-1) + fib(n-2)
+fib_normal n = fib_normal(n-1) + fib_normal(n-2)
 
 fib_IO :: IO ()
 fib_IO = do
@@ -37,15 +37,13 @@ fib_negativos = do
 
 
 --------------------------------------- FICHA 9 ---------------------------------------
-import System.Random
-randomIO :: Random a => IO
-randomRIO :: Random a => (a,a) -> IO
+
 
 dataAl :: IO (Int,Int,Int)
 dataAl = do
-    dia <- randomIO (1,31)
-    mes <- randomIO (1,12)
-    ano <- randomIO (2000,2025)
+    dia <- randomRIO (1,31)
+    mes <- randomRIO (1,12)
+    ano <- randomRIO (2000,2025)
     return(dia,mes,ano)
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
@@ -54,8 +52,8 @@ n˜ao podem ser apresentados n´umeros repetidos e o programa termina depois de
 gerados os 90 n´umeros diferentes.
 -}
 
-bingo :: IO() 
-bingo = do
+-- bingo :: IO() 
+-- bingo = do
 
 
 {-
