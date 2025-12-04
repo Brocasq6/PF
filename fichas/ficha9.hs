@@ -32,6 +32,25 @@ calculaFib = do
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
 tecla ´e pressionada ´e apresentado um n´umero aleat´orio entre 1 e 90. Obviamente,
