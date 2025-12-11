@@ -45,6 +45,7 @@ dataAl = do
     mes <- randomRIO (1,12)
     ano <- randomRIO (2000,2025)
     return(dia,mes,ano)
+
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
 tecla ´e pressionada ´e apresentado um n´umero aleat´orio entre 1 e 90. Obviamente,
@@ -52,9 +53,23 @@ n˜ao podem ser apresentados n´umeros repetidos e o programa termina depois de
 gerados os 90 n´umeros diferentes.
 -}
 
--- bingo :: IO() 
--- bingo = do
+bingo :: IO() 
+bingo = do
+    putStrLn ("Que começe o bingo")
+    l <- valores []
+    putStrLn (show l)
 
+
+valores :: [Int] -> IO [Int]
+valores l
+    | length l == 600 = return l
+    | otherwise = do
+        n <- randomRIO (1,600)
+        if n `elem` l
+            then valores l
+            else do
+                putStrLn ("O número é: " ++ show n)
+                valores (n:l)
 
 {-
 (b) mastermind :: IO () que implementa uma variante do jogo de descodifica¸c˜ao de
