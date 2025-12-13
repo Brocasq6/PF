@@ -157,3 +157,56 @@ angulo (Cartesiano x y) = atan2 y x
 angulo (Polar x y) = y
 
 ------------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------------
+
+dist :: Ponto -> Ponto -> Double
+dist (Cartsianp (0,0) _ ) = _ 
+dist (Cartesiano _ (0,0)) = _ 
+dist (Cartesiano (x1,y1) (x2,y2)) = sqrt(abs((x1-x2)^2 + (y1-y2)^2))
+
+------------------------------------------------------------------------------------
+
+data Figura = Circulo Ponto Double
+            | Rectangulo Ponto Ponto
+            | Triangulo Ponto Ponto Ponto
+deriving (Show,Eq)
+
+poligono :: Figura -> Bool
+poligono = undefined
+
+vertcies :: Figura -> [Ponto]
+vertcies = undefined
+
+area :: Figura -> Double
+area (Triangulo p1 p2 p3) =
+        let a = dist p1 p2
+            b = dist p2 p3
+            c = dist p3 p1
+            s = (a+b+c) / 2 -- semi-perimetro
+        in sqrt (s*(s-a)*(s-b)*(s-c)) -- formula de Heron
+
+-- completar
+
+perimetro :: Figura -> Double
+
+-- usando funcoes ord :: Char -> Int 
+--              e chr :: Int -> Char
+
+isLower :: Char -> Bool
+isLower = undefined
+
+isDigit :: Char -> Bool
+isDigit = undefined
+
+isAlpha :: Char -> Bool
+isAlpha = undefined
+
+toUpper :: Char -> Chat
+toUpper = undefined
+
+intToDigit:: Int -> Char
+intToDigit = undefined
+
+digitToInt :: Char -> Int
+digitToInt = undefined
