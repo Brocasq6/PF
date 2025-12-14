@@ -173,10 +173,20 @@ data Figura = Circulo Ponto Double
 deriving (Show,Eq)
 
 poligono :: Figura -> Bool
-poligono = undefined
+poligono figura =
+        case figura of
+                Circulo p1 d1           -> False
+                Rectangulo p1 p1        -> True
+                Triangulo p1 p2 p3      -> True
+                
+
 
 vertcies :: Figura -> [Ponto]
-vertcies = undefined
+vertcies figura = 
+        case figura of 
+                Circulo (x1,y1) _                       -> []
+                Rectangulo (x1,y1) (x2,y2)              -> [(x1,y1),(x1,y2),(x2,y1),(x2,y2)]
+                Triangulo (x1,y1) (x2,y2) (x3,y3)       -> [(x1,y1),(x2,y2),(x3,y3)]
 
 area :: Figura -> Double
 area (Triangulo p1 p2 p3) =
@@ -185,28 +195,42 @@ area (Triangulo p1 p2 p3) =
             c = dist p3 p1
             s = (a+b+c) / 2 -- semi-perimetro
         in sqrt (s*(s-a)*(s-b)*(s-c)) -- formula de Heron
+area (Rectangulo (x1,y1) (x2,y2)) = dist((x1,y1) (x2,y1)) * dist((x1,y1) (x1,y2))
+area (Circulo _ r) = (pi)*(r^2)
 
 -- completar
 
 perimetro :: Figura -> Double
+perimetro figura = 
+        case figura of 
+                perimetro (Circulo (x1,y1) r)                   ->  
+                perimetro (Rectangulo (x1,y1) (x2,y2))          -> 2*(dist (x1,y1) (x2,y1)) + 2*(dist (x1,y1) (x1,y2))
+                perimetro (Triangulo (x1,y1) (x2,y2) (x3,y3))   -> ((dist (x1,y1) (x2,y1)) * altura) / 2
 
 -- usando funcoes ord :: Char -> Int 
 --              e chr :: Int -> Char
 
 isLower :: Char -> Bool
-isLower = undefined
+isLower c = 'a' <= c <= 'z'
 
 isDigit :: Char -> Bool
-isDigit = undefined
+isDigit d = '0' <= d <= '9'
 
 isAlpha :: Char -> Bool
-isAlpha = undefined
+isAlpha a = 'A' <= a <= 'z'
 
-toUpper :: Char -> Chat
-toUpper = undefined
 
-intToDigit:: Int -> Char
-intToDigit = undefined
+toUpper :: Char -> Char
+toUpper c
+    | c >= 'a' && c <= 'z'      = toEnum (fromEnum c - 32)
+    | otherwise                 = c
+
+intToDigit :: Int -> Char
+intToDigit n
+    | n >= 0 && n <= 9  = toEnum (n + fromEnum '0')
+    | otherwise         = error "intToDigit: argumento fora do intervalo 0..9"
 
 digitToInt :: Char -> Int
-digitToInt = undefined
+digitToInt c
+    | c >= '0' && c <= '9'      = fromEnum c - fromEnum '0'
+    | otherwise                 = error "digitToInt: caracter nao e um digito"
