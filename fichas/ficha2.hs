@@ -97,6 +97,18 @@ sumTriplos ((a,b,c):t) = (a + a', b + b', c + c')
   where (a', b', c') = sumTriplos t
 
 -----------------------------------------------------------------------------------------
+-- Exercicio 3
+
+soDigitos :: [Char] -> [Char]
+soDigitos l = undefined
+
+minusculas :: [Char] -> Int
+minusculas l = undefined
+
+nums :: String -> [Int]
+nums s = undefined
+
+-----------------------------------------------------------------------------------------
 --Exercicio 4
 
 type Polinomio = [Monomio]
@@ -133,6 +145,19 @@ selgrau n ((a,b):t)
     | n == b = (a,b) : selgrau n t
     | otherwise = selgrau n t 
 
+
+
+{-
+(d) deriv :: Polinomio -> Polinomio que calcula a derivada de um polinómio.
+-}
+
+
+{-
+e) calcula :: Float -> Polinomio -> Float que calcula o valor de um polinómio
+para uma dado valor de x.
+-}
+
+
 {-
 (f) simp :: Polinomio -> Polinomio que retira de um polin´omio os mon´omios de
 coeficiente zero.
@@ -143,8 +168,9 @@ sim [] = []
 simp ((a,b):t)
     | a == 0 = simp t
     | otherwise = (a,b) : simp t
-
 {-
+
+
 (g) mult :: Monomio -> Polinomio -> Polinomio que calcula o resultado da mul-
 tiplica¸c˜ao de um mon´omio por um polin´omio.
 -}
@@ -152,6 +178,12 @@ tiplica¸c˜ao de um mon´omio por um polin´omio.
 mult :: Monomio -> Polinomio -> Polinomio
 mult (a,b) [] = []
 mult (a,b) ((c,d):t) = (a*c, b+d) : mult (a,b) t
+
+{-
+(h) normaliza :: Polinomio -> Polinomio que dado um polinómio constrói um
+polinómio equivalente em que não podem aparecer varios monómios com o mesmo
+grau.
+-}
 
 {-
 (i) soma :: Polinomio -> Polinomio -> Polinomio que soma dois polin´omios de
