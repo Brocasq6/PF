@@ -7,6 +7,8 @@ import Data.List
 ou no Data.List:
 -}
 
+
+
 {-
 (a) any :: (a -> Bool) -> [a] -> Bool que teste se um predicado ´e verdade para
 algum elemento de uma lista; por exemplo:
