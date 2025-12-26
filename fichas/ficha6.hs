@@ -204,11 +204,27 @@ deriving Show
 type Turma = BTree Aluno -- árvore binária de procura (ordenada por número)
 
 
+a1, a2, a3, a4, a5 :: Aluno
+a1 = (15, "Ana",   ORD, Aprov 14)
+a2 = ( 7, "Bruno", TE,  Rep)
+a3 = (20, "Carla", MEL, Faltou)
+a4 = (10, "Duarte",ORD, Aprov 10)
+a5 = ( 3, "Eva",   TE,  Aprov 18)
+
+t0 :: Turma
+t0 = Empty
+
+t1 :: Turma
+t1 = fromList [a1,a2,a3,a4,a5]
+
+
 -- Defina as seguintes funções:
+
 {-
 (a) inscNum :: Numero -> Turma -> Bool, que verifica se um aluno, com um dado
 número, está inscrito.
 -}
+
 
 {-
 (b) inscNome :: Nome -> Turma -> Bool, que verifica se um aluno, com um dado
