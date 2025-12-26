@@ -242,23 +242,38 @@ nome, está inscrito.
 inscNome :: Nome -> Turma -> Bool
 inscNome _ Empty = False
 inscNome x (Node (_,name,_,_) e d)
-    | x == name = True
-    | otherwise = inscNome x e || inscNome x d
+    | x == name     = True
+    | otherwise     = inscNome x e || inscNome x d
 
 {-
 (c) trabEst :: Turma -> [(Numero,Nome)], que lista o número e nome dos alunos
 trabalhadores-estudantes (ordenados por número).
 -}
 
+trabEst :: Turma -> [(Numero,Nome)]
+trabEst Empty = []
+trabEst (Node (numero,nome,estatuto,_) e d)
+    | estatuto == TE    = (numero,nome) : trabEst d ++ trabEst e
+    | otherwise         = trabEst d ++ trabEst e
+
 {-
 (d) nota :: Numero -> Turma -> Maybe Classificacao, que calcula a classificação
 de um aluno (se o aluno não estiver inscrito a função deve retornar Nothing).
 -}
 
+nota :: Numero -> Turma -> Maybe Classificacao
+nota _ Empty = Nothing
+nota x (Node (n,_,_,c) e d)
+    | x < n         = nota x e
+    | x > n         = nota x d
+    | otherwise     = Just c
+    
 {-
 (e) percFaltas :: Turma -> Float, que calcula a percentagem de alunos que fal-
 taram à avaliação.
 -}
+
+percFaltas :: Turma -> Float 
 
 {-
 (f) mediaAprov :: Turma -> Float, que calcula a média das notas dos alunos que
