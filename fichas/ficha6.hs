@@ -274,13 +274,44 @@ taram à avaliação.
 -}
 
 percFaltas :: Turma -> Float 
+percFaltas Empty = 0
+percFaltas t = (faltasTotais t / numAlunos t) * 100
+    where   faltasTotais :: Turma -> Float 
+            faltasTotais Empty = 0
+            faltasTotais (Node (_,_,_,Faltou) e d) = 1 + faltasTotais e + faltasTotais d
+            faltasTotais (Node _ e d) = faltasTotais e + faltasTotais d
+            numAlunos = fromIntegral . contaNodos
+
+
 
 {-
 (f) mediaAprov :: Turma -> Float, que calcula a média das notas dos alunos que
 passaram.
 -}
 
+mediaAprov :: Turma -> Float
+mediaAprov Empty = 0
+mediaAprov turma = uncurry (/) (sumNumNotas turma)
+    where sumNumNotas :: Turma -> (Float, Float)
+          sumNumNotas Empty = (0,0)
+          sumNumNotas (Node (_,_,_,Aprov nota) l r) = addPairs (fromIntegral nota, 1) (addPairs (sumNumNotas l) (sumNumNotas r))
+          sumNumNotas (Node _ l r) = addPairs (sumNumNotas l) (sumNumNotas r)
+          addPairs (a,b) (c,d) = (a+c,b+d)
+
+
 {-
 (g) aprovAv :: Turma -> Float, que calcula o rácio de alunos aprovados por avali-
 ados. Implemente esta função fazendo apenas uma travessia da árvore.
 -}
+
+aprovAv :: Turma -> Float
+aprovAv Empty = 0
+aprovAv turma = uncurry (/) (sumAprovAv turma)
+          
+sumAprovAv :: Turma -> (Float, Float)
+sumAprovAv Empty = (0,0)
+sumAprovAv (Node (_,_,_,clas) l r) = case clas of Aprov nota -> (ap+1,av+1) 
+                                                  Rep -> (ap,av+1)
+                                                  _ -> (ap,av)
+    where (ap,av) = addPairs (sumAprovAv l) (sumAprovAv r)
+          addPairs (a,b) (c,d) = (a+c,b+d)
