@@ -310,8 +310,10 @@ aprovAv turma = uncurry (/) (sumAprovAv turma)
           
 sumAprovAv :: Turma -> (Float, Float)
 sumAprovAv Empty = (0,0)
-sumAprovAv (Node (_,_,_,clas) l r) = case clas of Aprov nota -> (ap+1,av+1) 
-                                                  Rep -> (ap,av+1)
-                                                  _ -> (ap,av)
+sumAprovAv (Node (_,_,_,clas) l r) = 
+    case clas of Aprov 
+        nota    -> (ap+1,av+1) 
+        Rep     -> (ap,av+1)
+        _       -> (ap,av)
     where (ap,av) = addPairs (sumAprovAv l) (sumAprovAv r)
           addPairs (a,b) (c,d) = (a+c,b+d)
