@@ -173,16 +173,18 @@ um elemento de uma ´arvore bin´aria de procura, usando a fun¸c˜ao anterior.
 -}
 
 remove :: Ord a => a -> BTree a -> BTree a
-remove x Empty = Empty
-remove x (Node r e d) = 
-    | x < r = Node r e (remove x d)
-    | x > r = Node r (remove x e) d
-    | x == r = case (e,d) of 
-        (Empty , _) -> d
-        (_ , Empty) -> e 
-        _ = let m = minimo d
-                d' = semMinimo d 
-            in Node m e d' 
+remove _ Empty = Empty
+remove x (Node r e d)
+  | x < r     = Node r (remove x e) d
+  | x > r     = Node r e (remove x d)
+  | otherwise =
+      case (e, d) of
+        (Empty, _) -> d
+        (_, Empty) -> e
+        _          ->
+          let m  = minimo d
+              d' = semMinimo d
+          in Node m e d'
 
 
 
