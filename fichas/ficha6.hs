@@ -227,11 +227,23 @@ t1 = fromList [a1,a2,a3,a4,a5]
 número, está inscrito.
 -}
 
+inscNum :: Numero -> Turma -> Bool
+inscNum _ Empty = False
+inscNum x (Node (number,_,_,_) e d)
+    | x > number        = inscNum x e
+    | x < number        = inscNum x d
+    | otherwise         = True
 
 {-
 (b) inscNome :: Nome -> Turma -> Bool, que verifica se um aluno, com um dado
 nome, está inscrito.
 -}
+
+inscNome :: Nome -> Turma -> Bool
+inscNome _ Empty = False
+inscNome x (Node (_,name,_,_) e d)
+    | x == name = True
+    | otherwise = inscNome x e || inscNome x d
 
 {-
 (c) trabEst :: Turma -> [(Numero,Nome)], que lista o número e nome dos alunos
