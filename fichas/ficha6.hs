@@ -187,3 +187,55 @@ remove x (Node r e d) =
 
 
 
+
+
+{-
+3. Considere agora que guardamos a informação sobre uma turma de alunos na seguinte estrutura de dados:
+-}
+
+type Aluno = (Numero,Nome,Regime,Classificacao)
+type Numero = Int
+type Nome = String
+data Regime = ORD | TE | MEL deriving Show
+data Classificacao = Aprov Int
+                    | Rep
+                    | Faltou
+deriving Show
+type Turma = BTree Aluno -- árvore binária de procura (ordenada por número)
+
+
+-- Defina as seguintes funções:
+{-
+(a) inscNum :: Numero -> Turma -> Bool, que verifica se um aluno, com um dado
+número, está inscrito.
+-}
+
+{-
+(b) inscNome :: Nome -> Turma -> Bool, que verifica se um aluno, com um dado
+nome, está inscrito.
+-}
+
+{-
+(c) trabEst :: Turma -> [(Numero,Nome)], que lista o número e nome dos alunos
+trabalhadores-estudantes (ordenados por número).
+-}
+
+{-
+(d) nota :: Numero -> Turma -> Maybe Classificacao, que calcula a classificação
+de um aluno (se o aluno não estiver inscrito a função deve retornar Nothing).
+-}
+
+{-
+(e) percFaltas :: Turma -> Float, que calcula a percentagem de alunos que fal-
+taram à avaliação.
+-}
+
+{-
+(f) mediaAprov :: Turma -> Float, que calcula a média das notas dos alunos que
+passaram.
+-}
+
+{-
+(g) aprovAv :: Turma -> Float, que calcula o rácio de alunos aprovados por avali-
+ados. Implemente esta função fazendo apenas uma travessia da árvore.
+-}
