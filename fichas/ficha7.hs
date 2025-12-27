@@ -89,7 +89,7 @@ mirror (R a l) = R a (map mirror(reverse l))
 --(e) postorder :: RTree a -> [a] que corresponde à travessia postorder da árvore.
 
 postorder :: RTree a -> [a]
-postorder = undefined
+postorder (R r l) = concat (map postorder l) ++ [r]
 
 ---------------------- Exercicio 3 ----------------------
 
