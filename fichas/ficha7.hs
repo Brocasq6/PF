@@ -107,13 +107,24 @@ data LTree a = Tip a | Fork (LTree a) (LTree a)
 
 -- (a) ltSum :: Num a => LTree a -> a que soma as folhas de uma árvore.
 
+ltSum :: Num a => LTree a -> a
+ltSum (Tip n) = n
+ltSum (Fork a b) = ltSum a + ltSum b 
+
 {-
 (b) listaLT :: LTree a -> [a] que lista as folhas de uma árvore (da esquerda para
 a direita).
 -}
 
+listaLT :: LTree a -> [a]
+listaLT (Tip n) = [n]
+listaLT (Fork a b) = listaLT a ++ listaLT b
+
 -- (c) ltHeight :: LTree a -> Int que calcula a altura de uma árvore.
 
+ltHeight :: LTree a -> Int
+ltHeight (Tip _) = 0
+ltHeight (Fork a b) = 1 + max (ltHeight a) (ltHeight b)
 
 ---------------------- Exercicio 4 ----------------------
 
