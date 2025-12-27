@@ -59,6 +59,9 @@ data RTree a = R a [RTree a]
 Defina as seguintes funções sobre estas árvores:
 -}
 
+data RTree a = R a [RTree a]
+r1 = R 1 [R 2 [R 4 []], R 3 [R 5 [], R 6 []]]
+
 --(a) soma :: Num a => RTree a -> a que soma os elementos da árvore.
 
 soma :: Num a => RTree a -> a
@@ -75,12 +78,13 @@ mentos a partir de uma determinada profundidade.
 -}
 
 prune :: Int -> RTree a -> RTree a
-prune = undefined
+prune 1 (R a l) = R a []
+prune x (R a l) = R a (map (prune (x-1)) l)  
 
 --(d) mirror :: RTree a -> RTree a que gera a árvore simétrica.
 
 mirror :: RTree a -> RTree a
-mirror = undefined
+mirror (R a l) = R a (map mirror(reverse l))
 
 --(e) postorder :: RTree a -> [a] que corresponde à travessia postorder da árvore.
 
