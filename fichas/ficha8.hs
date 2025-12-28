@@ -13,16 +13,43 @@ entre dois números, baseada na seguinte propriedade (atribuida a Euclides):
 mdc x y == mdc (x+y) y == mdc x (y+x)
 -}
 
+normaliza :: Frac -> Frac
+normaliza (F a b)
+    | b < 0 = normaliza $ F (-a) (-b)
+    | otherwise = 
+        let d = mdc a b in
+        F (a `div` d) (b `div` d)
+
+mdc :: Integer -> Integer -> Integer
+mdc x 0 = x
+mdc 0 y = y
+mdc x y = mdc y (x `mod` y)
+
 -- (b) Defina Frac como instância da classe Eq.
 
+instance Eq Frac where
+    (==) :: Frac -> Frac -> Bool
+    f1 == f2 = a1 == a2 && b1 == b2
+        where   F a1 b1 = normaliza f1
+                F a2 b2 = normaliza f2
 
 -- (c) Defina Frac como instância da classe Ord.
 
+instance Ord Frac where
+    (<=) :: Frac -> Frac -> Bool
+    f1 <= f2 = a1 * b2 <= a2 * b1
+        where F a1 b1 = normaliza f1
+              F a2 b2 = normaliza f2
 
 {-
 (d) Defina Frac como instância da classe Show, de forma a que cada fracção seja
 apresentada por (numerador/denominador).
 -}
+
+instance Show Frac where
+    show :: Frac -> String
+    show f = show a ++ "/" ++ show b
+        where F a b = normaliza f
 
 {-
 (e) Defina Frac como instância da classe Num. Relembre que a classe Num tem a
@@ -33,6 +60,28 @@ negate, abs, signum :: a -> a
 fromInteger :: Integer -> a
 -}
 
+instance Num Frac where
+    (+) :: Frac -> Frac -> Frac
+    (F a1 b1) + (F a2 b2) = undefined
+
+    (*) :: Frac -> Frac -> Frac
+    (F a1 b1) * (F a2 b2) = undefined
+
+    (-) :: Frac -> Frac -> Frac
+    (F a1 b1) - (F a2 b2) = undefined
+
+    negate :: Frac -> Frac -> Frac
+    negate F a1 b1 = undefined
+    
+    abs :: Frac -> Frac -> Frac
+    abs f = undefined
+
+    signum :: Frac -> Frac -> Frac
+    signum f1 f2 = undefined
+
+    fromInteger :: Interger -> Frac
+    fromInteger x = undefined
+    
 {-
 (f) Defina uma função que, dada uma fracção f e uma lista de fracções l, selecciona
 de l os elementos que são maiores do que o dobro de f.
