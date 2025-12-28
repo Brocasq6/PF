@@ -84,12 +84,15 @@ instance Num Frac where
 
 
     fromInteger :: Interger -> Frac
-    fromInteger x = undefined
+    fromInteger x = (F (x) (1))
     
 {-
 (f) Defina uma função que, dada uma fracção f e uma lista de fracções l, selecciona
 de l os elementos que são maiores do que o dobro de f.
 -}
+
+maioresQueDobro :: Frac -> [Frac] -> [Frac]
+maioresQueDobro f l = filter (> (f * F 2 1)) l
 
 -- exercicio 2
 {-
@@ -131,3 +134,42 @@ eqExp :: Eq a => Exp a -> Exp a -> Bool
 eqExp (Const a) (Const b)             = calcula a == calcula b
 
 -- (c) Declare Exp a como instˆancia da classe Num.
+
+numExp :: Num a 
+
+
+{-
+3. Relembre o exercı́cio da Ficha 3 sobre contas bancárias, com a seguinte declaração de
+tipos
+-}
+
+data Movimento = Credito Float | Debito Float
+data Data = D Int Int Int
+data Extracto = Ext Float [(Data, String, Movimento)]
+
+-- (a) Defina Data como instância da classe Ord.
+
+instance Ord Data where                                   --(professora sofia)
+    compare :: Data -> Data -> Ordering
+    compare (D d1 m1 a1) (D d2 m2 a2) 
+        | a1 > a2 || a1 == a2 && (m1 > m2 || m1 == m2 && d1 > d2) = GT
+        | a1 == a2 && m1 == m2 && d1 == d2 = EQ
+        | otherwise = LT
+
+-- (b) Defina Data como instância da classe Show.
+
+instance Show Data where
+    show_data :: Data -> String
+    show_data (D d m a) = show d ++ "/" ++ show m ++ "/" ++ show a 
+
+{-
+(c) Defina a função ordena :: Extracto -> Extracto, que transforma um ex-
+tracto de modo a que a lista de movimentos apareça ordenada por ordem crescente
+de data.
+-}
+
+{-
+(d) Defina Extracto como instância da classe Show, de forma a que a apresentação do
+extracto seja por ordem de data do movimento com o seguinte, e com o seguinte
+aspecto
+-}
