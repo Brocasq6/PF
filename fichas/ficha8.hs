@@ -168,8 +168,33 @@ tracto de modo a que a lista de movimentos apareça ordenada por ordem crescente
 de data.
 -}
 
+-- codigo realizado pela professora sofia "https://pf.sofiars.xyz/fichas/8/" 
+ordena :: Extracto -> Extracto
+ordena (Ext n l) = Ext n (sortBy (\(data1,_,_) (data2,_,_) -> compare data1 data2) l)
+
 {-
 (d) Defina Extracto como instância da classe Show, de forma a que a apresentação do
 extracto seja por ordem de data do movimento com o seguinte, e com o seguinte
 aspecto
 -}
+
+-- codigo realizado pela professora sofia "https://pf.sofiars.xyz/fichas/8/" 
+
+instance Show Extracto where
+    show :: Extracto -> String
+    show ext = "Saldo anterior: " ++ show n ++
+               "\n---------------------------------------" ++
+               "\nData       Descricao" ++ replicate (desc_max - 9) ' ' ++ "Credito" ++ replicate (cred_max - 7) ' ' ++ "Debito" ++
+               "\n---------------------------------------\n" ++
+               unlines (map (\(dat,desc,mov) -> 
+                    show dat ++ replicate (data_max - length (show dat)) ' ' 
+                    ++ map toUpper desc ++ replicate (desc_max - length desc) ' ' 
+                    ++ case mov of Credito quant -> show quant ++ replicate (cred_max - length (show quant)) ' '; Debito _ -> replicate cred_max ' '
+                    ++ case mov of Debito quant -> show quant; Credito _ -> ""
+               ) movs) ++
+               "---------------------------------------" ++
+               "\nSaldo actual: " ++ show (saldo ext)
+        where (Ext n movs) = ordena ext
+              data_max = 11
+              desc_max = max (length "Descricao   ") (maximum $ map (\(_,desc,_) -> length desc) movs)
+              cred_max = max (length "Credito   ") (maximum $ map (\(_,_,mov) -> case mov of Credito x -> length (show x); _ -> 0) movs)
