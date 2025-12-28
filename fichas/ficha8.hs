@@ -15,7 +15,7 @@ mdc x y == mdc (x+y) y == mdc x (y+x)
 
 normaliza :: Frac -> Frac
 normaliza (F a b)
-    | b < 0 = normaliza $ F (-a) (-b)
+    | b < 0 = normaliza ( F (-a) (-b) )
     | otherwise = 
         let d = mdc a b in
         F (a `div` d) (b `div` d)
@@ -62,22 +62,26 @@ fromInteger :: Integer -> a
 
 instance Num Frac where
     (+) :: Frac -> Frac -> Frac
-    (F a1 b1) + (F a2 b2) = undefined
+    (F a1 b1) + (F a2 b2) = normaliza ((F (a1*b2) (b1*b2)) + (F (a2*b1) (b1*b2)))
 
     (*) :: Frac -> Frac -> Frac
-    (F a1 b1) * (F a2 b2) = undefined
+    (F a1 b1) * (F a2 b2) = normaliza (F (a1*a2) (b1*b2))
 
     (-) :: Frac -> Frac -> Frac
-    (F a1 b1) - (F a2 b2) = undefined
+    (F a1 b1) - (F a2 b2) = normaliza ((F (a1*b2) (b1*b2)) - (F (a2*b1) (b1*b2)))
 
-    negate :: Frac -> Frac -> Frac
-    negate F a1 b1 = undefined
+    negate :: Frac -> Frac 
+    negate (F a1 b1) = (F (-a1) (-b1))
     
-    abs :: Frac -> Frac -> Frac
-    abs f = undefined
+    abs :: Frac -> Frac 
+    abs (F a1 b1) = ( F (abs(a1)) (abs(b1)) )
 
-    signum :: Frac -> Frac -> Frac
-    signum f1 f2 = undefined
+    signum :: Frac -> Frac
+    signum (F a1 b1)
+        | a1 * b1 > 0  = F (1) (1)      -- fração positiva
+        | a1 * b1 < 0  = F (-1) (1)     -- fração negativa
+        | otherwise    = F (0) (1)      -- fração nula
+
 
     fromInteger :: Interger -> Frac
     fromInteger x = undefined
