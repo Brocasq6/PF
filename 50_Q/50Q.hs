@@ -1,4 +1,4 @@
-module Cinquenta_Q where
+module C50_Q where
 
 {-
 1  Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromTo :: Int -> Int ->
@@ -29,10 +29,10 @@ que concatena duas listas.
 Por exemplo, (++) [1,2,3] [10,20,30] corresponde `a lista [1,2,3,10,20,30].
 -}
 
-(++) :: [a] -> [a] -> [a]
-(++) [] [] = []
-(++) [] l = l
-(++) (h:t) l2 = h : (++) t l2
+(+++) :: [a] -> [a] -> [a]
+(+++) [] [] = []
+(+++) [] l = l
+(+++) (h:t) l2 = h : (+++) t l2
 
 {-
 4. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (!!) :: [a] -> Int -> a que
@@ -42,8 +42,10 @@ Ignore os casos em que a fun¸c˜ao n˜ao se encontra definida (i.e., em que a p
 corresponde a nenhuma posi¸c˜ao v´alida da lista).
 -}
 
-(!!) :: [a] -> Int -> a
-(!!) = undefined
+(!!!) :: [a] -> Int -> a 
+(!!!) (h:t) x
+    | x == 0 = h
+    | otherwise = (!!!) t (x - 1)
 
 {-
 5. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) reverse :: [a] -> [a] que
@@ -273,8 +275,8 @@ segunda lista da primeira.
 Por exemplo, (\\)[1,2,3,4,5,1] [1,5] corresponde a [2,3,4,1].
 -}
 
-(\\) :: Eq a => [a] -> [a] -> [a]
-(\\) = undefined
+(\\\) :: Eq a => [a] -> [a] -> [a]
+(\\\) = undefined
 
 {-
 29. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) union :: Eq a => [a] -> [a]
