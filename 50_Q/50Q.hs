@@ -6,7 +6,10 @@ module Cinquenta_Q where
 Por exemplo, enumFromTo 1 5 corresponde `a lista [1,2,3,4,5]) 
 -}
 
-ł·ǿþ 
+enomFromTo :: Int -> Int -> [Int]
+enomFromTo n1 n2
+    | n1 > n2 = []
+    | otherwise = n1 : enomFromTo (n1 + 1) (n2)
 
 {-
 2 Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromThenTo :: Int -> Int
@@ -15,8 +18,10 @@ e espa¸cados de um valor constante.
 Por exemplo, enumFromThenTo 1 3 10 corresponde `a lista [1,3,5,7,9].)
 -}
 
-enumFromThenTo :: Int -> Int -> Int -> [Int]
-enumFromThenTo = undefined
+enumFromThenTo2 :: Int -> Int -> Int -> [Int]
+enumFromThenTo2 n1 n2 n3 
+    | n1 > n3   = [] 
+    | otherwise = n1 : enumFromThenTo2 n2 (n2 + (n2 - n1)) n3 
 
 {-
 3. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (++) :: [a] -> [a] -> [a]
@@ -25,7 +30,9 @@ Por exemplo, (++) [1,2,3] [10,20,30] corresponde `a lista [1,2,3,10,20,30].
 -}
 
 (++) :: [a] -> [a] -> [a]
-(++) = undefined
+(++) [] [] = []
+(++) [] l = l
+(++) (h:t) l2 = h : (++) t l2
 
 {-
 4. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (!!) :: [a] -> Int -> a que
