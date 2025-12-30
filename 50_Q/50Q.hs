@@ -53,8 +53,11 @@ dada uma lista calcula uma lista com os elementos dessa lista pela ordem inversa
 Por exemplo, reverse [10,20,30] corresponde a [30,20,10].
 -}
 
-reverse :: [a] -> [a]
-reverse = undefined
+reverseBini :: [a] -> [a]
+reverseBini l = 
+    case l of
+        []      -> []
+        (h:t)   -> reverseBini t ++ [h] 
 
 {-
 6. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) take :: Int -> [a] -> [a] que
