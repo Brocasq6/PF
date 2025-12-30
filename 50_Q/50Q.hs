@@ -68,8 +68,11 @@ Nesse caso a lista calculada ´e igual `a lista fornecida.
 Por exemplo, take 2 [10,20,30] corresponde a [10,20].
 -}
 
-take :: Int -> [a] -> [a]
-take = undefined
+takeBini :: Int -> [a] -> [a]
+takeBini x [] = []
+takeBini x (h:t)
+    | x == 0 = t
+    | otherwise = h : takeBini (x - 1) t
 
 {-
 7. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) drop :: Int -> [a] -> [a] que
@@ -79,8 +82,24 @@ Se a lista fornecida tiver n elementos ou menos, a lista resultante ser´a vazia
 Por exemplo, drop 2 [10,20,30] corresponde a [30].
 -}
 
-drop :: Int -> [a] -> [a]
-drop = undefined
+dropBini :: Int -> [a] -> [a]
+dropBini x [] = []
+dropBini x (h:t)
+    | x == 0 = t
+    | otherwise = h : drop (x-1) t 
+
+
+
+{-
+8. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) zip :: [a] -> [b] -> [(a,b)]
+const´oi uma lista de pares a partir de duas listas.
+Por exemplo, zip [1,2,3] [10,20,30,40] corresponde a [(1,10),(2,20),(3,30)].
+-}
+
+zipBini :: [a] -> [b] -> [(a,b)]
+zipBini [] [] = []
+zipBini [] _ = []
+zipBini (h1:t1) (h2:t2) = (h1,h2) : zipBini t1 t2
 
 {-
 9. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) replicate :: Int -> a ->
@@ -89,18 +108,10 @@ a x.
 Por exemplo, replicate 3 10 corresponde a [10,10,10].
 -}
 
-replicate :: Int -> a -> [a]
-replicate = undefined
-
-{-
-8. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) zip :: [a] -> [b] -> [(a,b)]
-const´oi uma lista de pares a partir de duas listas.
-Por exemplo, zip [1,2,3] [10,20,30,40] corresponde a [(1,10),(2,20),(3,30)].
--}
-
-zip :: [a] -> [b] -> [(a,b)]
-zip = undefined
-
+replicateBini :: Int -> a -> [a]
+replicateBini v r
+    | v == 0 = []
+    | otherwise = r : replicateBini (v - 1) r
 {-
 10. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) intersperse :: a -> [a] ->
 [a] que dado um elemento e uma lista, constr´oi uma lista em que o elemento fornecido ´e
