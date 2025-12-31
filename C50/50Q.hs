@@ -156,8 +156,8 @@ concatena as listas de uma lista.
 Por exemplo, concat [[1],[2,2],[3],[4,4,4],[5],[4]] corresponde a [1,2,2,3,4,4,4,5,4].
 -}
 
-concat :: [[a]] -> [a]
-concat = undefined  
+concatBini :: [[a]] -> [a]
+concatBini = undefined  
 
 {-
 13. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) inits :: [a] -> [[a]] que
@@ -165,8 +165,8 @@ calcula a lista dos prefixos de uma lista.
 Por exemplo, inits [11,21,13] corresponde a [[],[11],[11,21],[11,21,13]].
 -}
 
-inits :: [a] -> [[a]]
-inits = undefined
+initsBini :: [a] -> [[a]]
+initsBini = undefined
 
 {-
 14. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) tails :: [a] -> [[a]] que
@@ -174,8 +174,8 @@ calcula a lista dos sufixos de uma lista.
 Por exemplo, tails [1,2,3] corresponde a [[1,2,3],[2,3],[3],[]].
 -}
 
-tails :: [a] -> [[a]]
-tails = undefined
+tailsBini :: [a] -> [[a]]
+tailsBini = undefined
 
 {-
 15. Defina a fun¸c˜ao heads :: [[a]] -> [a] que recebe uma lista de listas e produz a lista com
@@ -183,8 +183,8 @@ o primeiro elemento de cada lista.
 Por exemplo, heads [[2,3,4],[1,7],[],[8,5,3]] corresponde a [2,1,8].
 -}
 
-heads :: [[a]] -> [a]
-heads = undefined
+headsBini :: [[a]] -> [a]
+headsBini = undefined
 
 {-
 16. Defina a fun¸c˜ao total :: [[a]] -> Int que recebe uma lista de listas e conta o total de
@@ -192,8 +192,8 @@ elementos (de todas as listas)
 Por exemplo, total [[2,3,4],[1,7],[],[8,5,3]] corresponde a 8.
 -}
 
-total :: [[a]] -> Int
-total = undefined
+totalBini :: [[a]] -> Int
+totalBini = undefined
 
 {-
 17. Defina a fun¸c˜ao fun :: [(a,b,c)] -> [(a,c)] que recebe uma lista de triplos e produz a
@@ -202,16 +202,16 @@ Por exemplo, fun [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a
 [("rui",2), ("maria",2), ("ana",7)].
 -}
 
-fun :: [(a,b,c)] -> [(a,c)]
-fun = undefined
+funBini :: [(a,b,c)] -> [(a,c)]
+funBini = undefined
 
 {-
 18. Defina a fun¸c˜ao cola :: [(String,b,c)] -> String que recebe uma lista de triplos e concatena as strings que est˜ao na primeira componente dos triplos.
 Por exemplo, cola [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a "ruimariaana
 -}
 
-cola :: [(String,b,c)] -> String
-cola = undefined
+colaBini :: [(String,b,c)] -> String
+colaBini = undefined
 
 {-
 19. Defina a fun¸c˜ao idade :: Int -> Int -> [(String,Int)] -> [String] que recebe o ano,
@@ -221,8 +221,8 @@ Por exemplo, idade 2021 26 [("rui",1995), ("maria",2009), ("ana",1947)] correspo
 a ["rui","ana"].
 -}
 
-idade :: Int -> Int -> [(String,Int)] -> [String]
-idade = undefined
+idadeBini :: Int -> Int -> [(String,Int)] -> [String]
+idadeBini = undefined
 
 {-
 20. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao,
@@ -318,8 +318,8 @@ que n˜ao ocorrem na primeira.
 Por exemplo, union [1,1,2,3,4] [1,5] corresponde a [1,1,2,3,4,5].
 -}
 
-union :: Eq a => [a] -> [a] -> [a]
-union = undefined
+unionBini :: Eq a => [a] -> [a] -> [a]
+unionBini = undefined
 
 {-
 30. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) intersect :: Eq a => [a] ->
@@ -328,8 +328,8 @@ pertencem `a segunda.
 Por exemplo, intersect [1,1,2,3,4] [1,3,5] corresponde a [1,1,3].
 -}
 
-intersect :: Eq a => [a] -> [a] -> [a]
-intersect = undefined
+intersectBini :: Eq a => [a] -> [a] -> [a]
+intersectBini = undefined
 
 {-
 31. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) insert :: Ord a => a -> [a]
@@ -338,8 +338,8 @@ ordenadamente esse elemento na lista.
 Por exemplo, insert 25 [1,20,30,40] corresponde a [1,20,25,30,40].
 -}
 
-insert :: Ord a => a -> [a] -> [a]
-insert = undefined
+insertBini :: Ord a => a -> [a] -> [a]
+insertBini = undefined
 
 {-
 32. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unwords :: [String] -> String que
@@ -347,8 +347,8 @@ junta todas as strings da lista numa s´o, separando-as por um espa¸co.
 Por exemplo, unwords ["Programacao", "Funcional"] corresponde a "Programacao Funcional".
 -}
 
-unwords :: [String] -> String
-unwords = undefined
+unwordsBini :: [String] -> String
+unwordsBini = undefined
 
 {-
 33. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unlines :: [String] -> String que
@@ -356,8 +356,8 @@ junta todas as strings da lista numa s´o, separando-as pelo caracter ’\n’.
 Por exemplo, unlines ["Prog", "Func"] corresponde a "Prog\nFunc\n".
 -}
 
-unlines :: [String] -> String
-unlines = undefined
+unlinesBini :: [String] -> String
+unlinesBini = undefined
 
 {-
 34. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pMaior :: Ord a => [a] -> Int que dada
@@ -376,8 +376,8 @@ argumento) atendendo a uma condi¸c˜ao dada pelo primeiro argumento.
 Por exemplo, lookup ’a’ [(’a’,1),(’b’,4),(’c’,5)] corresponde `a lista Just 1.
 -}
 
-lookup :: Eq a => a -> [(a,b)] -> Maybe b
-lookup = undefined
+lookupBini :: Eq a => a -> [(a,b)] -> Maybe b
+lookupBini = undefined
 
 {-
 36. Defina a fun¸c˜ao preCrescente :: Ord a => [a] -> [a] calcula o maior prefixo crescente
