@@ -120,11 +120,12 @@ intercalado entre os elementos da lista fornecida.
 Por exemplo, intersperce 1 [10,20,30] corresponde a [10,1,20,1,30].
 -}
 
-intersperseBini :: a -> [a] -> [a]
-intersperseBini x l = 
+intersperceBini :: a -> [a] -> [a]
+intersperceBini x l = 
     case l of
-        []      ->  [x]
-        (h:t)   ->  h : x : interspaceBini x t
+        []      -> []
+        [x]     -> [x] 
+        (h:t)   -> h : x : intersperceBini x t
 
 {-
 11. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) group :: Eq a => [a] -> [[a]] que
@@ -132,9 +133,23 @@ agrupa elementos iguais e consecutivos de uma lista.
 Por exemplo, group [1,2,2,3,4,4,4,5,4] corresponde a [[1],[2,2],[3],[4,4,4],[5],[4]].
 -}
 
-group :: Eq a => [a] -> [[a]]
-group = undefined
+groupBiniOriginal :: Eq a => [a] -> [[a]]
+groupBiniOriginal [] = []
+groupBiniOriginal [x] = [[x]]
+groupBiniOriginal (h:t) = insereBini h (groupBiniOriginal t) -- agrupa primeiro o resto da lista e so depois e que agrupa h
 
+groupBini2 :: Eq a => [a] -> [[a]]
+groupBini2 []   = []
+groupBini2 [x]  = [[x]]
+groupBini2 (x:y:ys)
+    | x == y    = (x : head (groupBini2 (y:ys))) : tail (groupBini2 (y:ys))
+    | otherwise = [x] : (groupBini2 (y:ys))
+
+insereBini :: Eq a => a -> [[a]] -> [[a]]
+insereBini x [] = [[x]]
+insereBini x (h:t)
+    | elem x h  = (x : h) : t
+    | otherwise = [x] : (h : t)
 {-
 12. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) concat :: [[a]] -> [a] que
 concatena as listas de uma lista.
