@@ -157,7 +157,10 @@ Por exemplo, concat [[1],[2,2],[3],[4,4,4],[5],[4]] corresponde a [1,2,2,3,4,4,4
 -}
 
 concatBini :: [[a]] -> [a]
-concatBini = undefined  
+concatBini l =
+    case l of 
+        []      -> []
+        (h:t)   -> h ++ concatBini t
 
 {-
 13. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) inits :: [a] -> [[a]] que
@@ -165,8 +168,14 @@ calcula a lista dos prefixos de uma lista.
 Por exemplo, inits [11,21,13] corresponde a [[],[11],[11,21],[11,21,13]].
 -}
 
+-- nesta funcao e necessario recorrer á funcao init 
+-- init [1,2,3,4] retorna [1,2,3]  
+
 initsBini :: [a] -> [[a]]
-initsBini = undefined
+initsBini l =
+    case l of 
+        [] -> [[]]
+        l  -> initsBini (init l) ++ [l]
 
 {-
 14. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) tails :: [a] -> [[a]] que
@@ -175,7 +184,10 @@ Por exemplo, tails [1,2,3] corresponde a [[1,2,3],[2,3],[3],[]].
 -}
 
 tailsBini :: [a] -> [[a]]
-tailsBini = undefined
+tailsBini l = 
+    case l of 
+        []      -> [[]] 
+        (h:t)   -> reverseBini(initsBini (h:t))
 
 {-
 15. Defina a fun¸c˜ao heads :: [[a]] -> [a] que recebe uma lista de listas e produz a lista com
@@ -184,7 +196,11 @@ Por exemplo, heads [[2,3,4],[1,7],[],[8,5,3]] corresponde a [2,1,8].
 -}
 
 headsBini :: [[a]] -> [a]
-headsBini = undefined
+headsBini l =
+    case l of 
+        [[]]    -> []
+        ([]:t)  -> headsBini t
+        (h:t)   -> head h : headsBini t     
 
 {-
 16. Defina a fun¸c˜ao total :: [[a]] -> Int que recebe uma lista de listas e conta o total de
@@ -192,9 +208,18 @@ elementos (de todas as listas)
 Por exemplo, total [[2,3,4],[1,7],[],[8,5,3]] corresponde a 8.
 -}
 
-totalBini :: [[a]] -> Int
-totalBini = undefined
+lengthBini :: [a] -> Int
+lengthBini l = 
+    case l of 
+        [] -> 0 
+        (h:t) -> 1 + lengthBini t
 
+totalBini :: [[a]] -> Int
+totalBini l =
+    case l of 
+        []      -> 0 
+        [[]]    -> 0
+        (h:t)   -> lengthBini h + totalBini t
 {-
 17. Defina a fun¸c˜ao fun :: [(a,b,c)] -> [(a,c)] que recebe uma lista de triplos e produz a
 lista de pares com o primeiro e o terceiro elemento de cada triplo.
@@ -203,7 +228,11 @@ Por exemplo, fun [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a
 -}
 
 funBini :: [(a,b,c)] -> [(a,c)]
-funBini = undefined
+funBini l =
+    case l of 
+        [] -> []
+        [(a,b,c)] -> [(a,c)]
+        ((a,b,c):t) -> (a,c) : funBini t 
 
 {-
 18. Defina a fun¸c˜ao cola :: [(String,b,c)] -> String que recebe uma lista de triplos e concatena as strings que est˜ao na primeira componente dos triplos.
@@ -211,7 +240,11 @@ Por exemplo, cola [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a "ruim
 -}
 
 colaBini :: [(String,b,c)] -> String
-colaBini = undefined
+colaBini l =
+    case l of
+        []            -> "nao tem nada" 
+        [(str,b,c)]   -> str
+        ((str,b,c):t) -> str ++ colaBini t 
 
 {-
 19. Defina a fun¸c˜ao idade :: Int -> Int -> [(String,Int)] -> [String] que recebe o ano,
