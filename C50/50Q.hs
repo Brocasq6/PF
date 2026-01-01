@@ -255,16 +255,22 @@ a ["rui","ana"].
 -}
 
 idadeBini :: Int -> Int -> [(String,Int)] -> [String]
-idadeBini = undefined
+idadeBini a i l = 
+    case l of 
+        []        -> []
+        ((np,an):t) -> if a - an >= i then np : idadeBini a i t else idadeBini a i t
 
 {-
-20. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao,
+20. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao, 
 powerEnumFrom :: Int -> Int -> [Int]
 que dado um valor n e um valor m constr´oi a lista [n0, . . . , nm−1].
 -}
 
 powerEnumFrom :: Int -> Int -> [Int]
-powerEnumFrom = undefined
+powerEnumFrom n 1 = [1]
+powerEnumFrom n m 
+    | m > 1 = powerEnumFrom n (m-1) ++ [n^(m-1)]
+    | otherwise = []
 
 {-
 21. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao,
