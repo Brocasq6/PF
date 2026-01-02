@@ -302,8 +302,8 @@ isPrefixOf :: Eq a => [a] -> [a] -> Bool
 isPrefixOf _ [] = False
 isPrefixOf [] _ = True
 isPrefixOf (h1:t1) (h2:t2)
-    | h1 == h2 && isPrefixOf t1 t2 = True
-    | otherwise = False
+    | h1 == h2 && isPrefixOf t1 t2  = True
+    | otherwise                     = False
 {-
 23. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSuffixOf :: Eq a => [a] -> [a] -> Bool que testa se uma lista ´e sufixo de outra.
 Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuffixOf
@@ -312,7 +312,10 @@ Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuf
 
 isSuffixOf :: Eq a => [a] -> [a] -> Bool
 isSuffixOf _ [] = False
-isSuffixOf [] _ =    
+isSuffixOf [] _ = True
+isSuffixOf (h1:t1) (h2:t2) 
+    | h1 /= h2 && isSuffixOf t1 t2  = True
+    | otherwise                     = False
 
 {-
 24. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSubsequenceOf :: Eq a => [a] -> [a] -> Bool que testa se os elementos de uma lista ocorrem noutra pela mesma
@@ -321,8 +324,12 @@ Por exemplo, isSubsequenceOf [20,40] [10,20,30,40] corresponde a True enquanto q
 isSubsequenceOf [40,20] [10,20,30,40] corresponde a False.
 -}
 
-subsequenceOfBini :: Eq a => [a] -> [a] -> Bool
-subsequenceOfBini = undefined
+isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
+isSubsequenceOf [] _ = True
+isSubsequenceOf _ [] = False
+isSubsequenceOf (h1:t1) (h2:t2) 
+    | h1 == h2  = isSubsequenceOf t1 t2
+    | otherwise = isSubsequenceOf (h1:t1) t2
 
 {-
 25. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) elemIndices :: Eq a => a ->
@@ -331,7 +338,14 @@ Por exemplo, elemIndices 3 [1,2,3,4,3,2,3,4,5] corresponde a [2,4,6].
 -}
 
 elemIndicesBini :: Eq a => a -> [a] -> [Int]
-elemIndicesBini = undefined
+elemIndicesBini x l = elemIndicesBiniAux x l 0
+
+elemIndicesBiniAux :: Eq a => a -> [a] -> Int -> [Int]
+elemIndicesBiniAux _ [] _ = []
+elemIndicesBiniAux x (h:t) i 
+    | x == h    = i : elemIndicesBiniAux x t (i+1)
+    | otherwise = elemIndicesBiniAux x t (i+1) 
+
 
 {-
 26. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) nub :: Eq a => [a] -> [a] que
@@ -340,7 +354,10 @@ Por exemplo, nub [1,2,1,2,3,1,2] corresponde a [1,2,3].
 -}
 
 nubBini :: Eq a => [a] -> [a]
-nubBini = undefined
+nubBini [] = []
+nubBini (h:t) 
+    | h `elem` t    = nubBini t
+    | otherwise     = reverseBini(h : nubBini t) 
 
 {-
 27. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) delete :: Eq a => a -> [a]
@@ -350,7 +367,10 @@ Por exemplo, delete 2 [1,2,1,2,3,1,2] corresponde a [1,1,2,3,1,2]. Se n˜ao exis
 -}
 
 deleteBini :: Eq a => a -> [a] -> [a]
-deleteBini = undefined
+deleteBini x [] = []
+deleteBini x (h:t) 
+    | x == h = t
+    | otherwise = h : deleteBini x t 
 
 {-
 28. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (\\):: Eq a => [a] -> [a]
@@ -360,8 +380,12 @@ Por exemplo, (\\)[1,2,3,4,5,1] [1,5] corresponde a [2,3,4,1].
 -}
 
 (\\\) :: Eq a => [a] -> [a] -> [a]
-(\\\) = undefined
-
+(\\\) [] [] = []
+(\\\) l []  = l
+(\\\) (h:t) (h':t')
+    | h == h' = (\\\) t t'
+    | otherwise = h : (\\\) t (h':t')
+ 
 {-
 29. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) union :: Eq a => [a] -> [a]
 -> [a] que retorna a lista resultante de acrescentar `a primeira lista os elementos da segunda
