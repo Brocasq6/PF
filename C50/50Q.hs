@@ -282,7 +282,15 @@ n˜ao ´e primo.
 -}
 
 isPrime :: Int -> Bool
-isPrime = undefined
+isPrime n 
+    | n >= 2    = primeCheckSofia n 2
+    | otherwise = False
+
+primeCheckSofia :: Int -> Int -> Bool
+primeCheckSofia n m
+    | m * m > n     = True
+    | mod n m == 0  = False
+    | otherwise     = primeCheckSofia n (m + 1)
 
 {-
 22. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isPrefixOf :: Eq a => [a] -> [a] -> Bool que testa se uma lista ´e prefixo de outra.
@@ -291,8 +299,11 @@ Por exemplo, isPrefixOf [10,20] [10,20,30] corresponde a True enquanto que isPre
 -}
 
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
-isPrefixOf = undefined
-
+isPrefixOf _ [] = False
+isPrefixOf [] _ = True
+isPrefixOf (h1:t1) (h2:t2)
+    | h1 == h2 && isPrefixOf t1 t2 = True
+    | otherwise = False
 {-
 23. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSuffixOf :: Eq a => [a] -> [a] -> Bool que testa se uma lista ´e sufixo de outra.
 Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuffixOf
@@ -300,7 +311,8 @@ Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuf
 -}
 
 isSuffixOf :: Eq a => [a] -> [a] -> Bool
-isSuffixOf = undefined
+isSuffixOf _ [] = False
+isSuffixOf [] _ =    
 
 {-
 24. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSubsequenceOf :: Eq a => [a] -> [a] -> Bool que testa se os elementos de uma lista ocorrem noutra pela mesma
@@ -309,8 +321,8 @@ Por exemplo, isSubsequenceOf [20,40] [10,20,30,40] corresponde a True enquanto q
 isSubsequenceOf [40,20] [10,20,30,40] corresponde a False.
 -}
 
-isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
-isSubsequenceOf = undefined
+isSubsequenceOfBini :: Eq a => [a] -> [a] -> Bool
+isSubsequenceOfBini = undefined
 
 {-
 25. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) elemIndices :: Eq a => a ->
@@ -318,8 +330,8 @@ isSubsequenceOf = undefined
 Por exemplo, elemIndices 3 [1,2,3,4,3,2,3,4,5] corresponde a [2,4,6].
 -}
 
-elemIndices :: Eq a => a -> [a] -> [Int]
-elemIndices = undefined
+elemIndicesBini :: Eq a => a -> [a] -> [Int]
+elemIndicesBini = undefined
 
 {-
 26. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) nub :: Eq a => [a] -> [a] que
@@ -327,8 +339,8 @@ calcula uma lista com os mesmos elementos da recebida, sem repeti¸c˜oes.
 Por exemplo, nub [1,2,1,2,3,1,2] corresponde a [1,2,3].
 -}
 
-nub :: Eq a => [a] -> [a]
-nub = undefined
+nubBini :: Eq a => [a] -> [a]
+nubBini = undefined
 
 {-
 27. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) delete :: Eq a => a -> [a]
@@ -337,8 +349,8 @@ de uma lista.
 Por exemplo, delete 2 [1,2,1,2,3,1,2] corresponde a [1,1,2,3,1,2]. Se n˜ao existir nenhuma ocorrˆencia a fun¸c˜ao dever´a retornar a lista recebida.
 -}
 
-delete :: Eq a => a -> [a] -> [a]
-delete = undefined
+deleteBini :: Eq a => a -> [a] -> [a]
+deleteBini = undefined
 
 {-
 28. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (\\):: Eq a => [a] -> [a]
