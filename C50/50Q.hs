@@ -321,8 +321,8 @@ Por exemplo, isSubsequenceOf [20,40] [10,20,30,40] corresponde a True enquanto q
 isSubsequenceOf [40,20] [10,20,30,40] corresponde a False.
 -}
 
-isSubsequenceOfBini :: Eq a => [a] -> [a] -> Bool
-isSubsequenceOfBini = undefined
+subsequenceOfBini :: Eq a => [a] -> [a] -> Bool
+subsequenceOfBini = undefined
 
 {-
 25. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) elemIndices :: Eq a => a ->
