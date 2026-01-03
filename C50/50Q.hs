@@ -369,7 +369,7 @@ Por exemplo, delete 2 [1,2,1,2,3,1,2] corresponde a [1,1,2,3,1,2]. Se n˜ao exis
 deleteBini :: Eq a => a -> [a] -> [a]
 deleteBini x [] = []
 deleteBini x (h:t) 
-    | x == h = t
+    | x == h    = t
     | otherwise = h : deleteBini x t 
 
 {-
@@ -383,7 +383,7 @@ Por exemplo, (\\)[1,2,3,4,5,1] [1,5] corresponde a [2,3,4,1].
 (\\\) [] [] = []
 (\\\) l []  = l
 (\\\) (h:t) (h':t')
-    | h == h' = (\\\) t t'
+    | h == h'   = (\\\) t t'
     | otherwise = h : (\\\) t (h':t')
  
 {-
@@ -395,10 +395,10 @@ Por exemplo, union [1,1,2,3,4] [1,5] corresponde a [1,1,2,3,4,5].
 
 unionBini :: Eq a => [a] -> [a] -> [a]
 unionBini [] [] = []
-unionBini l [] = []
-unionBini [] l = l
+unionBini l []  = []
+unionBini [] l  = l
 unionBini (h1:t1) (h2:t2)
-    | h1 == h2 = h1 : unionBini t1 t2  
+    | h1 == h2  = h1 : unionBini t1 t2  
     | otherwise = h1 : unionBini t1 (h2:t2)
 
 {-
@@ -409,9 +409,9 @@ Por exemplo, intersect [1,1,2,3,4] [1,3,5] corresponde a [1,1,3].
 -}
 
 intersectBini :: Eq a => [a] -> [a] -> [a]
-intersectBini [] []             = [] 
-intersectBini [] l              = []
-intersectBini l []              = []
+intersectBini [] [] = [] 
+intersectBini [] l  = []
+intersectBini l []  = []
 intersectBini (h1:t1) (h2:t2)   
     | h1 == h2  = h1 : intersectBini t1 (h2:t2)
     | otherwise = intersectBini t1 t2
@@ -427,7 +427,7 @@ Por exemplo, insert 25 [1,20,30,40] corresponde a [1,20,25,30,40].
 insertBini :: Ord a => a -> [a] -> [a]
 insertBini x [] = [x]
 insertBini x (h:t)
-    | x <= h = x : (h:t) 
+    | x <= h    = x : (h:t) 
     | otherwise = h : insertBini x t
 
 {-
@@ -462,8 +462,8 @@ maior.
 -}
 
 pMaior :: Ord a => [a] -> Int
-pMaior [] = error "lista vazia"
-pMaior (h:t) = pMaiorAux t 1 h 0
+pMaior []       = error "lista vazia"
+pMaior (h:t)    = pMaiorAux t 1 h 0
     where 
         pMaiorAux :: Ord a => [a] -> Int -> a -> Int -> Int
         pMaiorAux [] _ _ iMaior = iMaior
@@ -481,7 +481,7 @@ Por exemplo, lookup ’a’ [(’a’,1),(’b’,4),(’c’,5)] corresponde `a
 lookupBini :: Eq a => a -> [(a,b)] -> Maybe b
 lookupBini s [] = Nothing
 lookupBini s ((a,b):t) 
-    | s == a = Just b
+    | s == a    = Just b
     | otherwise = lookupBini s t
 
 {-
@@ -491,17 +491,27 @@ Por exemplo, preCrescente [3,7,9,6,10,22] corresponde a [3,7,9].
 -}
 
 preCrescente :: Ord a => [a] -> [a]
-preCrescente = undefined
+preCrescente []     = []
+preCrescente [a]    = [a]
+preCrescente (h:t)
+    | h <= head t   = h : preCrescente t
+    | otherwise     = [h]
 
 {-
 37. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao iSort :: Ord a => [a] -> [a] que calcula
 o resultado de ordenar uma lista. Assuma, se precisar, que existe definida a fun¸c˜ao insert
 :: Ord a => a -> [a] -> [a] que dado um elemento e uma lista ordenada retorna a lista
 resultante de inserir ordenadamente esse elemento na lista.
+
+iSort 
 -}
 
-iSort :: Ord a => [a] -> [a]
-iSort = undefined
+iSortBini :: Ord a => [a] -> [a]
+iSortBini [] = []
+iSortBini [a] = [a]
+iSortBini (h:t) 
+    | h < head t = h : iSortBini t
+    | otherwise = insertBini h (iSortBini t)  
 
 {-
 38. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao menor :: String -> String -> Bool que
@@ -511,8 +521,10 @@ Por exemplo, menor "sai" "saiu" corresponde a True enquanto que menor "programac
 "funcional" corresponde a False.
 -}
 
-menor :: String
-menor = undefined
+menor :: String -> String -> Bool
+menor s1 s2 
+    | lengthBini s1 < lengthBini s2 = True
+    | otherwise = False
 
 {-
 39. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -524,8 +536,11 @@ Por exemplo, elemMSet ’a’ [(’b’,2), (’a’,4), (’c’,1)] correspond
 que elemMSet ’d’ [(’b’,2), (’a’,4), (’c’,1)] corresponde a False.
 -}
 
-elemMSet :: Eq a => a -> [(a,Int)] -> Bool
-elemMSet = undefined
+elemMSetBini :: Eq a => a -> [(a,Int)] -> Bool
+elemMSetBini x [] = False
+elemMSetBini x ((a,b):t)
+    | x == a = True  
+    | otherwise = elemMSetBini x t
 
 {-
 40. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -533,11 +548,13 @@ Considere ainda que nestas listas n˜ao h´a pares cuja primeira componente coin
 segunda componente seja menor ou igual a zero.
 Defina a fun¸c˜ao converteMSet :: [(a,Int)] -> [a] que converte um multi-conjuto na
 lista dos seus elementos
-Por exemplo, converteMSet [(’b’,2), (’a’,4), (’c’,1)] corresponde a "bbaaaac".
+Por exemplo, converteMSetBini [(’b’,2), (’a’,4), (’c’,1)] corresponde a "bbaaaac".
 -}
 
-converteMSet :: [(a,Int)] -> [a]    
-converteMSet = undefined
+converteMSetBini :: [(a,Int)] -> [a]    
+converteMSetBini [] = []
+converteMSetBini [(a,b)] = replicateBini b a
+converteMSetBini ((a,b):t) = replicateBini b a ++ converteMSetBini t
 
 {-
 41. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
