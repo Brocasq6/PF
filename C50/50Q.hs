@@ -479,7 +479,10 @@ Por exemplo, lookup ’a’ [(’a’,1),(’b’,4),(’c’,5)] corresponde `a
 -}
 
 lookupBini :: Eq a => a -> [(a,b)] -> Maybe b
-lookupBini = undefined
+lookupBini s [] = Nothing
+lookupBini s ((a,b):t) 
+    | s == a = Just b
+    | otherwise = lookupBini s t
 
 {-
 36. Defina a fun¸c˜ao preCrescente :: Ord a => [a] -> [a] calcula o maior prefixo crescente
