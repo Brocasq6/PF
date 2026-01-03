@@ -394,7 +394,12 @@ Por exemplo, union [1,1,2,3,4] [1,5] corresponde a [1,1,2,3,4,5].
 -}
 
 unionBini :: Eq a => [a] -> [a] -> [a]
-unionBini = undefined
+unionBini [] [] = []
+unionBini l [] = []
+unionBini [] l = l
+unionBini (h1:t1) (h2:t2)
+    | h1 == h2 = h1 : unionBini t1 t2  
+    | otherwise = h1 : unionBini t1 (h2:t2)
 
 {-
 30. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) intersect :: Eq a => [a] ->
@@ -404,7 +409,13 @@ Por exemplo, intersect [1,1,2,3,4] [1,3,5] corresponde a [1,1,3].
 -}
 
 intersectBini :: Eq a => [a] -> [a] -> [a]
-intersectBini = undefined
+intersectBini [] []             = [] 
+intersectBini [] l              = []
+intersectBini l []              = []
+intersectBini (h1:t1) (h2:t2)   
+    | h1 == h2  = h1 : intersectBini t1 (h2:t2)
+    | otherwise = intersectBini t1 t2
+
 
 {-
 31. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) insert :: Ord a => a -> [a]
@@ -414,7 +425,10 @@ Por exemplo, insert 25 [1,20,30,40] corresponde a [1,20,25,30,40].
 -}
 
 insertBini :: Ord a => a -> [a] -> [a]
-insertBini = undefined
+insertBini x [] = [x]
+insertBini x (h:t)
+    | x <= h = x : (h:t) 
+    | otherwise = h : insertBini x t
 
 {-
 32. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unwords :: [String] -> String que
@@ -423,7 +437,10 @@ Por exemplo, unwords ["Programacao", "Funcional"] corresponde a "Programacao Fun
 -}
 
 unwordsBini :: [String] -> String
-unwordsBini = undefined
+unwordsBini l = 
+    case l of 
+        []      -> "" 
+        (h:t)   -> h ++ " " ++ unwordsBini t
 
 {-
 33. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unlines :: [String] -> String que
@@ -432,7 +449,10 @@ Por exemplo, unlines ["Prog", "Func"] corresponde a "Prog\nFunc\n".
 -}
 
 unlinesBini :: [String] -> String
-unlinesBini = undefined
+unlinesBini l = 
+    case l of
+        []      -> ""
+        (h:t)   -> h ++ "\n" ++ unlinesBini t
 
 {-
 34. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pMaior :: Ord a => [a] -> Int que dada
@@ -442,7 +462,14 @@ maior.
 -}
 
 pMaior :: Ord a => [a] -> Int
-pMaior = undefined
+pMaior [] = error "lista vazia"
+pMaior (h:t) = pMaiorAux t 1 h 0
+    where 
+        pMaiorAux :: Ord a => [a] -> Int -> a -> Int -> Int
+        pMaiorAux [] _ _ iMaior = iMaior
+        pMaiorAux (x:xs) iAtual maior iMaior
+            | x > maior = pMaiorAux xs (iAtual + 1) x iAtual
+            | otherwise = pMaiorAux xs (iAtual + 1) maior iMaior
 
 {-
 35. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) lookup :: Eq a => a -> [(a,b)]
