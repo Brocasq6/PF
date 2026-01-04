@@ -510,8 +510,8 @@ iSortBini :: Ord a => [a] -> [a]
 iSortBini [] = []
 iSortBini [a] = [a]
 iSortBini (h:t) 
-    | h < head t = h : iSortBini t
-    | otherwise = insertBini h (iSortBini t)  
+    | h < head t    = h : iSortBini t
+    | otherwise     = insertBini h (iSortBini t)  
 
 {-
 38. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao menor :: String -> String -> Bool que
@@ -524,7 +524,7 @@ Por exemplo, menor "sai" "saiu" corresponde a True enquanto que menor "programac
 menor :: String -> String -> Bool
 menor s1 s2 
     | lengthBini s1 < lengthBini s2 = True
-    | otherwise = False
+    | otherwise                     = False
 
 {-
 39. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -539,7 +539,7 @@ que elemMSet ’d’ [(’b’,2), (’a’,4), (’c’,1)] corresponde a False
 elemMSetBini :: Eq a => a -> [(a,Int)] -> Bool
 elemMSetBini x [] = False
 elemMSetBini x ((a,b):t)
-    | x == a = True  
+    | x == a    = True  
     | otherwise = elemMSetBini x t
 
 {-
@@ -553,8 +553,8 @@ Por exemplo, converteMSetBini [(’b’,2), (’a’,4), (’c’,1)] correspond
 
 converteMSetBini :: [(a,Int)] -> [a]    
 converteMSetBini [] = []
-converteMSetBini [(a,b)] = replicateBini b a
-converteMSetBini ((a,b):t) = replicateBini b a ++ converteMSetBini t
+converteMSetBini [(a,b)]    = replicateBini b a
+converteMSetBini ((a,b):t)  = replicateBini b a ++ converteMSetBini t
 
 {-
 41. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -566,22 +566,29 @@ Por exemplo, insereMSet ’c’ [(’b’,2), (’a’,4), (’c’,1)] correspo
 (’a’,4), (’c’,2)].
 -}
 
-insereMSet :: Eq a => a -> [(a,Int)] -> [(a,Int)]
-insereMSet = undefined
+insereMSetBini :: Eq a => a -> [(a,Int)] -> [(a,Int)]
+insereMSetBini x [] = [(x,1)]
+insereMSetBini x ((a,b):t)
+    | x == a    = (a,b + 1) : t
+    | otherwise = (a,b) : insereMSetBini x t
 
 {-
 42. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
-Considere ainda que nestas listas n˜ao h´a pares cuja primeira componente coincida, nem cuja
+Considere ainda que nest as listas n˜ao h´a pares cuja primeira componente coincida, nem cuja
 segunda componente seja menor ou igual a zero.
 Defina a fun¸c˜ao removeMSet :: Eq a => a -> [(a,Int)] -> [(a,Int)] que remove um
 elemento a um multi-conjunto. Se o elemento n˜ao existir, deve ser retornado o multi-conjunto
 recebido.
-Por exemplo, removeMSet ’c’ [(’b’,2), (’a’,4), (’c’,1)] corresponde a [(’b’,2),
+Por exemplo, removeMSet 'c' [('b',2), ('a',4), ('c',1)] corresponde a [(’b’,2),
 (’a’,4)].
 -}
 
 removeMSet :: Eq a => a -> [(a,Int)] -> [(a,Int)]
-removeMSet = undefined
+removeMSet s [] = []
+removeMSet s ((a,b):t)
+    | s == a && b == 1 = t
+    | s == a && b > 1 = (a,b-1) : t 
+    | otherwise = (a,b) : removeMSet s t
 
 {-
 43. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -590,23 +597,41 @@ segunda componente seja menor ou igual a zero.
 -}
 
 cardMSet :: [(a,Int)] -> Int
-cardMSet = undefined
+cardMSet [] = 0
+cardMSet [(a,b)] = b
+cardMSet ((a,b):t) = b + cardMSet t
 
 {-
 44. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pr´e-definida partitionEithers :: [Either
 a b] -> ([a],[b]) que divide uma lista de Either s em duas listas.
+
+> partitionEithers [Left 1, Right 2, Left 3, Right 4, Left 5]
+([1,3,5],[2,4])
+
 -}
 
 partitionEithers :: [Either a b] -> ([a],[b])
-partitionEithers = undefined
+partitionEithers [] = ([],[])
+partitionEithers ((Left a):t) = (a:esq , dir)
+        where (esq,dir) = partitionEithers t
+partitionEithers ((Right b):t) = (esq , b:dir)
+        where (esq,dir) = partitionEithers t
+            
+
 
 {-
 45. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pr´e-definida catMaybes :: [Maybe a] -> [a]
 que colecciona os elementos do tipo a de uma lista.
+
+> catMaybes [Just 1, Just 2, Nothing, Just 3, Nothing, Just 4, Just 5, Nothing]
+[1,2,3,4,5]
 -}
 
 catMaybes :: [Maybe a] -> [a]
-catMaybes = undefined
+catMaybes []            = []
+catMaybes [Just a]      = [a]
+catMaybes ((Just a):t)  = a : catMaybes t
+catMaybes ((Nothing):t) = catMaybes t
 
 {-
 46. Considere o seguinte tipo para representar movimentos de um robot.
@@ -624,8 +649,13 @@ data Movimento
     deriving Show
 
 caminho :: (Int,Int) -> (Int,Int) -> [Movimento]
-caminho = undefined
-
+caminho (x1,y1) (x2,y2) 
+    | x1 < x2 = Este  : caminho (x1+1,y1) (x2,y2)
+    | x1 > x2 = Oeste : caminho (x1,y1) (x2+1,y2)
+    | y1 < y2 = Norte : caminho (x1,y1+1) (x2,y2)
+    | y1 > y2 = Sul   : caminho (x1,y1) (x2,y2+1)
+    | otherwise = []
+     
 {-
 47. Consider o seguinte tipo de dados,
 data Movimento = Norte | Sul | Este | Oeste
@@ -636,8 +666,18 @@ vez volta a passar pela posi¸c˜ao inicial ao longo do percurso correspondente.
 fun¸c˜ao posicao definida acima.
 -}
 
-hasLoops :: (Int,Int) -> [Movimento] -> Bool
-hasLoops = undefined
+--funcao retirada de https://pf.sofiars.xyz/50q/47/ pela professora Sofia
+
+posicaoSofia :: (Int,Int) -> [Movimento] -> (Int,Int)
+posicaoSofia p [] = p
+posicaoSofia (x, y) (Norte:t) = posicaoSofia (x, y + 1) t
+posicaoSofia (x, y) (Sul:t) = posicaoSofia (x, y - 1) t
+posicaoSofia (x, y) (Este:t) = posicaoSofia (x + 1, y) t
+posicaoSofia (x, y) (Oeste:t) = posicaoSofia (x - 1, y) t
+
+hasLoopsSofia :: (Int,Int) -> [Movimento] -> Bool
+hasLoopsSofia _ [] = False
+hasLoopsSofia posi movs = posi == posicaoSofia posi movs || hasLoopsSofia posi (init movs)
 
 {-
 48. Considere os seguintes tipos para representar pontos e rectˆangulos, respectivamente. Assuma
@@ -686,6 +726,34 @@ data Equipamento
 naoReparar :: [Equipamento] -> Int
 naoReparar = undefined
 
+
+
+
+
+
+
+
+
+
+
+
+
+--------------- possiveis exercicios que ja apareceram antes --------------- 
+{-
+
+Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a. 
+Considere ainda que nestas listas não há pares cuja primeira componente coincida, 
+nem cuja segunda componente seja menor ou igual a zero.
+Defina a função constroiMSet :: Ord a => [a] -> [(a,Int)] que,
+dada uma lista ordenada por ordem crescente, calcula o multi-conjunto dos seus elementos.
+
+exemplo : 
+
+> constroiMSet "aaabccc"
+[(’a’,3), (’b’,1), (’c’,3)]
+
+
+-}
 
 
 
