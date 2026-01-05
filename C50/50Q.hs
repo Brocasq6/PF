@@ -666,7 +666,7 @@ vez volta a passar pela posi¸c˜ao inicial ao longo do percurso correspondente.
 fun¸c˜ao posicao definida acima.
 -}
 
---funcao retirada de https://pf.sofiars.xyz/50q/47/ pela professora Sofia
+-- FUNÇÃO RETIRADA DE https://pf.sofiars.xyz/50q/47/ PELA PROFESSORA Sofia DAS AULAS PRATICAS DE PF
 
 posicaoSofia :: (Int,Int) -> [Movimento] -> (Int,Int)
 posicaoSofia p [] = p
