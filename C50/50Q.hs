@@ -339,12 +339,12 @@ Por exemplo, elemIndices 3 [1,2,3,4,3,2,3,4,5] corresponde a [2,4,6].
 
 elemIndicesBini :: Eq a => a -> [a] -> [Int]
 elemIndicesBini x l = elemIndicesBiniAux x l 0
-
-elemIndicesBiniAux :: Eq a => a -> [a] -> Int -> [Int]
-elemIndicesBiniAux _ [] _ = []
-elemIndicesBiniAux x (h:t) i 
-    | x == h    = i : elemIndicesBiniAux x t (i+1)
-    | otherwise = elemIndicesBiniAux x t (i+1) 
+    where
+        elemIndicesBiniAux :: Eq a => a -> [a] -> Int -> [Int]
+        elemIndicesBiniAux _ [] _ = []
+        elemIndicesBiniAux x (h:t) i 
+            | x == h    = i : elemIndicesBiniAux x t (i+1)
+            | otherwise = elemIndicesBiniAux x t (i+1) 
 
 
 {-
@@ -687,6 +687,10 @@ type Ponto = (Float,Float)
 data Rectangulo = Rect Ponto Ponto
 Defina a fun¸c˜ao contaQuadrados :: [Rectangulo] -> Int que, dada uma lista com rectˆangulos,
 conta quantos deles s˜ao quadrados.
+
+> contaQuadrados [Rect (0,0) (2,2), Rect (1,3) (7,4), Rect (5,2) (8,5), Rect (1,2) (2,4)]
+2
+
 -}
 
 type Ponto = (Float,Float)  
@@ -694,8 +698,12 @@ data Rectangulo = Rect Ponto Ponto
     deriving Show
 
 contaQuadrados :: [Rectangulo] -> Int
-contaQuadrados = undefined
-
+contaQuadrados [] = 0
+contaQuadrados [Rect (0,0) (x2,y2)] = 1
+contaQuadrados ((Rect (x1,y1) (x2,y2)):t)
+    | abs(x2 - x1) == abs(y2 - y1) = 1 + contaQuadrados t 
+    | otherwise = contaQuadrados t
+ 
 {-
 49. Considere os seguintes tipos para representar pontos e rectˆangulos, respectivamente. Assuma
 que os rectˆangulos tˆem os lados paralelos aos eixos e s˜ao representados apenas por dois dos
@@ -707,8 +715,9 @@ determina a ´area total que eles ocupam.
 -}
 
 areaTotal :: [Rectangulo] -> Float  
-areaTotal = undefined
-
+areaTotal [] = 0
+areaTotal ((Rect (x1,y1) (x2,y2)):t) = abs(x2-x1) * abs(y2-y1) + areaTotal t
+    
 {-
 50. Considere o seguinte tipo para representar o estado de um equipamento.
 data Equipamento = Bom | Razoavel | Avariado
@@ -724,7 +733,12 @@ data Equipamento
     deriving Show
 
 naoReparar :: [Equipamento] -> Int
-naoReparar = undefined
+naoReparar [] = 0 
+naoReparar (e:t) = 
+    case e of
+        Avariado -> naoReparar t
+        _ -> 1 + naoReparar t
+
 
 
 
