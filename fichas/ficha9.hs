@@ -11,26 +11,10 @@ dialogo s = do
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
 fib_normal :: Int -> Int
-fib_normal 0 = 0 
-fib_normal 1 = 1
-fib_normal n = fib_normal(n-1) + fib_normal(n-2)
 
 fib_IO :: IO ()
-fib_IO = do
-    n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
-    let r = fib_normal (read n)
-    putStrLn ("O resultado é " ++ show r)
 
 fib_negativos :: IO ()
-fib_negativos = do
-    n <- dialogo "Introduz o número de Fibonacci que queres calcular: "
-    let i = read n
-    if i < 0
-        then putStrLn "O Fib não se encontra definido para valores menores que zero"
-        else do
-            let r = fib_normal i
-            putStrLn ("O Fib de " ++ n ++ " é " ++ show r)
-    
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -40,11 +24,7 @@ fib_negativos = do
 
 
 dataAl :: IO (Int,Int,Int)
-dataAl = do
-    dia <- randomRIO (1,31)
-    mes <- randomRIO (1,12)
-    ano <- randomRIO (2000,2025)
-    return(dia,mes,ano)
+
 
 {-
 (a) bingo :: IO () que sorteia os n´umeros para o jogo do bingo. Sempre que uma
@@ -54,22 +34,11 @@ gerados os 90 n´umeros diferentes.
 -}
 
 bingo :: IO() 
-bingo = do
-    putStrLn ("Que começe o bingo")
-    l <- valores []
-    putStrLn (show l)
+
 
 
 valores :: [Int] -> IO [Int]
-valores l
-    | length l == 600 = return l
-    | otherwise = do
-        n <- randomRIO (1,600)
-        if n `elem` l
-            then valores l
-            else do
-                putStrLn ("O número é: " ++ show n)
-                valores (n:l)
+
 
 {-
 (b) mastermind :: IO () que implementa uma variante do jogo de descodifica¸c˜ao de

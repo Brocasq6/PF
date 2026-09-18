@@ -18,11 +18,7 @@ data ExpInt
     | Mult ExpInt ExpInt
 
 calcula :: ExpInt -> Int
-calcula (Const x)     = x
-calcula (Simetrico x) = - (calcula x)
-calcula (Mais x y)    = (calcula x) + (calcula y)
-calcula (Menos x y)   = (calcula x) - (calcula y)
-calcula (Mult  x y)   = (calcula x) * (calcula y)
+
 
 {-
 (b) Defina uma função infixa :: ExpInt -> String de forma a que
@@ -31,11 +27,6 @@ infixa (Mais (Const 3) (Menos (Const 2) (Const 5))) dê como resultado
 -}
 
 infixa :: ExpInt -> String
-infixa (Const x)        = show x
-infixa (Simetrico x)    = "-" ++ "(" ++ infixa x ++ ")"
-infixa (Mais x1 x2)     = "(" ++ infixa x1 ++ "+" ++ infixa x2 ++ ")"
-infixa (Menos x1 x2)    = "(" ++ infixa x1 ++ "-" ++ infixa x2 ++ ")"
-infixa (Mult x1 x2)     = "(" ++ infixa x1 ++ "*" ++ infixa x2 ++ ")"
 
 {-
 (c) Defina uma outra função de conversão para strings posfixa :: ExpInt -> String
@@ -44,12 +35,6 @@ de forma a que quando aplicada à expressão acima dê como resultado "3 2 5 -
 -}
 
 posFixa :: ExpInt -> String
-posFixa (Const x)       = show x
-posFixa (Simetrico x)   = "-" ++ posFixa x
-posFixa (Mais x1 x2)    = (infixa x1) ++ (infixa x2) ++ "+"
-posFixa (Menos x1 x2)   = (infixa x1) ++ (infixa x2) ++ "-"     
-posFixa (Mult x1 x2)    = (infixa x1) ++ (infixa x2) ++ "*"
-
 
 ---------------------- Exercicio 2 ----------------------
 
@@ -65,12 +50,10 @@ r1 = R 1 [R 2 [R 4 []], R 3 [R 5 [], R 6 []]]
 --(a) soma :: Num a => RTree a -> a que soma os elementos da árvore.
 
 soma :: Num a => RTree a -> a
-soma (R x l) = x + sum(map soma l)
 
 --(b) altura :: RTree a -> Int que calcula a altura da árvore.
 
 altura :: RTree a -> Int
-altura (R x l) = 1 + maximum(map altura l)
 
 {-
 (c) prune :: Int -> RTree a -> RTree a que remove de uma árvore todos os ele-
@@ -78,18 +61,17 @@ mentos a partir de uma determinada profundidade.
 -}
 
 prune :: Int -> RTree a -> RTree a
-prune 1 (R a l) = R a []
-prune x (R a l) = R a (map (prune (x-1)) l)  
+
 
 --(d) mirror :: RTree a -> RTree a que gera a árvore simétrica.
 
 mirror :: RTree a -> RTree a
-mirror (R a l) = R a (map mirror(reverse l))
+
 
 --(e) postorder :: RTree a -> [a] que corresponde à travessia postorder da árvore.
 
 postorder :: RTree a -> [a]
-postorder (R r l) = concat (map postorder l) ++ [r]
+
 
 ---------------------- Exercicio 3 ----------------------
 
@@ -108,8 +90,6 @@ data LTree a = Tip a | Fork (LTree a) (LTree a)
 -- (a) ltSum :: Num a => LTree a -> a que soma as folhas de uma árvore.
 
 ltSum :: Num a => LTree a -> a
-ltSum (Tip n) = n
-ltSum (Fork a b) = ltSum a + ltSum b 
 
 {-
 (b) listaLT :: LTree a -> [a] que lista as folhas de uma árvore (da esquerda para
@@ -117,14 +97,10 @@ a direita).
 -}
 
 listaLT :: LTree a -> [a]
-listaLT (Tip n) = [n]
-listaLT (Fork a b) = listaLT a ++ listaLT b
 
 -- (c) ltHeight :: LTree a -> Int que calcula a altura de uma árvore.
 
 ltHeight :: LTree a -> Int
-ltHeight (Tip _) = 0
-ltHeight (Fork a b) = 1 + max (ltHeight a) (ltHeight b)
 
 ---------------------- Exercicio 4 ----------------------
 
