@@ -7,9 +7,6 @@ Por exemplo, enumFromTo 1 5 corresponde `a lista [1,2,3,4,5])
 -}
 
 enomFromTo :: Int -> Int -> [Int]
-enomFromTo n1 n2
-    | n1 > n2 = []
-    | otherwise = n1 : enomFromTo (n1 + 1) (n2)
 
 {-
 2 Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) enumFromThenTo :: Int -> Int
@@ -19,9 +16,6 @@ Por exemplo, enumFromThenTo 1 3 10 corresponde `a lista [1,3,5,7,9].)
 -}
 
 enumFromThenTo2 :: Int -> Int -> Int -> [Int]
-enumFromThenTo2 n1 n2 n3 
-    | n1 > n3   = [] 
-    | otherwise = n1 : enumFromThenTo2 n2 (n2 + (n2 - n1)) n3 
 
 {-
 3. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (++) :: [a] -> [a] -> [a]
@@ -30,9 +24,6 @@ Por exemplo, (++) [1,2,3] [10,20,30] corresponde `a lista [1,2,3,10,20,30].
 -}
 
 (+++) :: [a] -> [a] -> [a]
-(+++) [] [] = []
-(+++) [] l = l
-(+++) (h:t) l2 = h : (+++) t l2
 
 {-
 4. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (!!) :: [a] -> Int -> a que
@@ -43,9 +34,6 @@ corresponde a nenhuma posi¸c˜ao v´alida da lista).
 -}
 
 (!!!) :: [a] -> Int -> a 
-(!!!) (h:t) x
-    | x == 0 = h
-    | otherwise = (!!!) t (x - 1)
 
 {-
 5. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) reverse :: [a] -> [a] que
@@ -54,10 +42,6 @@ Por exemplo, reverse [10,20,30] corresponde a [30,20,10].
 -}
 
 reverseBini :: [a] -> [a]
-reverseBini l = 
-    case l of
-        []      -> []
-        (h:t)   -> reverseBini t ++ [h] 
 
 {-
 6. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) take :: Int -> [a] -> [a] que
@@ -69,10 +53,6 @@ Por exemplo, take 2 [10,20,30] corresponde a [10,20].
 -}
 
 takeBini :: Int -> [a] -> [a]
-takeBini x [] = []
-takeBini x (h:t)
-    | x == 0 = t
-    | otherwise = h : takeBini (x - 1) t
 
 {-
 7. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) drop :: Int -> [a] -> [a] que
@@ -83,12 +63,6 @@ Por exemplo, drop 2 [10,20,30] corresponde a [30].
 -}
 
 dropBini :: Int -> [a] -> [a]
-dropBini x [] = []
-dropBini x (h:t)
-    | x == 0 = t
-    | otherwise = h : drop (x-1) t 
-
-
 
 {-
 8. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) zip :: [a] -> [b] -> [(a,b)]
@@ -97,9 +71,6 @@ Por exemplo, zip [1,2,3] [10,20,30,40] corresponde a [(1,10),(2,20),(3,30)].
 -}
 
 zipBini :: [a] -> [b] -> [(a,b)]
-zipBini [] [] = []
-zipBini [] _ = []
-zipBini (h1:t1) (h2:t2) = (h1,h2) : zipBini t1 t2
 
 {-
 9. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) replicate :: Int -> a ->
@@ -109,9 +80,6 @@ Por exemplo, replicate 3 10 corresponde a [10,10,10].
 -}
 
 replicateBini :: Int -> a -> [a]
-replicateBini v r
-    | v == 0 = []
-    | otherwise = r : replicateBini (v - 1) r
 
 {-
 10. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) intersperse :: a -> [a] ->
@@ -121,11 +89,6 @@ Por exemplo, intersperce 1 [10,20,30] corresponde a [10,1,20,1,30].
 -}
 
 intersperceBini :: a -> [a] -> [a]
-intersperceBini x l = 
-    case l of
-        []      -> []
-        [x]     -> [x] 
-        (h:t)   -> h : x : intersperceBini x t
 
 {-
 11. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) group :: Eq a => [a] -> [[a]] que
@@ -134,22 +97,11 @@ Por exemplo, group [1,2,2,3,4,4,4,5,4] corresponde a [[1],[2,2],[3],[4,4,4],[5],
 -}
 
 groupBiniOriginal :: Eq a => [a] -> [[a]]
-groupBiniOriginal [] = []
-groupBiniOriginal [x] = [[x]]
-groupBiniOriginal (h:t) = insereBini h (groupBiniOriginal t) -- agrupa primeiro o resto da lista e so depois e que agrupa h
 
 groupBini2 :: Eq a => [a] -> [[a]]
-groupBini2 []   = []
-groupBini2 [x]  = [[x]]
-groupBini2 (x:y:ys)
-    | x == y    = (x : head (groupBini2 (y:ys))) : tail (groupBini2 (y:ys))
-    | otherwise = [x] : (groupBini2 (y:ys))
 
 insereBini :: Eq a => a -> [[a]] -> [[a]]
-insereBini x [] = [[x]]
-insereBini x (h:t)
-    | elem x h  = (x : h) : t
-    | otherwise = [x] : (h : t)
+
 {-
 12. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) concat :: [[a]] -> [a] que
 concatena as listas de uma lista.
@@ -157,10 +109,7 @@ Por exemplo, concat [[1],[2,2],[3],[4,4,4],[5],[4]] corresponde a [1,2,2,3,4,4,4
 -}
 
 concatBini :: [[a]] -> [a]
-concatBini l =
-    case l of 
-        []      -> []
-        (h:t)   -> h ++ concatBini t
+
 
 {-
 13. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) inits :: [a] -> [[a]] que
@@ -172,10 +121,7 @@ Por exemplo, inits [11,21,13] corresponde a [[],[11],[11,21],[11,21,13]].
 -- init [1,2,3,4] retorna [1,2,3]  
 
 initsBini :: [a] -> [[a]]
-initsBini l =
-    case l of 
-        [] -> [[]]
-        l  -> initsBini (init l) ++ [l]
+
 
 {-
 14. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) tails :: [a] -> [[a]] que
@@ -184,10 +130,7 @@ Por exemplo, tails [1,2,3] corresponde a [[1,2,3],[2,3],[3],[]].
 -}
 
 tailsBini :: [a] -> [[a]]
-tailsBini l = 
-    case l of 
-        []      -> [[]] 
-        (h:t)   -> reverseBini(initsBini (h:t))
+
 
 {-
 15. Defina a fun¸c˜ao heads :: [[a]] -> [a] que recebe uma lista de listas e produz a lista com
@@ -196,11 +139,7 @@ Por exemplo, heads [[2,3,4],[1,7],[],[8,5,3]] corresponde a [2,1,8].
 -}
 
 headsBini :: [[a]] -> [a]
-headsBini l =
-    case l of 
-        [[]]    -> []
-        ([]:t)  -> headsBini t
-        (h:t)   -> head h : headsBini t     
+   
 
 {-
 16. Defina a fun¸c˜ao total :: [[a]] -> Int que recebe uma lista de listas e conta o total de
@@ -209,17 +148,9 @@ Por exemplo, total [[2,3,4],[1,7],[],[8,5,3]] corresponde a 8.
 -}
 
 lengthBini :: [a] -> Int
-lengthBini l = 
-    case l of 
-        [] -> 0 
-        (h:t) -> 1 + lengthBini t
 
 totalBini :: [[a]] -> Int
-totalBini l =
-    case l of 
-        []      -> 0 
-        [[]]    -> 0
-        (h:t)   -> lengthBini h + totalBini t
+
 {-
 17. Defina a fun¸c˜ao fun :: [(a,b,c)] -> [(a,c)] que recebe uma lista de triplos e produz a
 lista de pares com o primeiro e o terceiro elemento de cada triplo.
@@ -227,12 +158,6 @@ Por exemplo, fun [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a
 [("rui",2), ("maria",2), ("ana",7)].
 -}
 
-funBini :: [(a,b,c)] -> [(a,c)]
-funBini l =
-    case l of 
-        [] -> []
-        [(a,b,c)] -> [(a,c)]
-        ((a,b,c):t) -> (a,c) : funBini t 
 
 {-
 18. Defina a fun¸c˜ao cola :: [(String,b,c)] -> String que recebe uma lista de triplos e concatena as strings que est˜ao na primeira componente dos triplos.
@@ -240,11 +165,6 @@ Por exemplo, cola [("rui",3,2), ("maria",5,2), ("ana",43,7)] corresponde a "ruim
 -}
 
 colaBini :: [(String,b,c)] -> String
-colaBini l =
-    case l of
-        []            -> "nao tem nada" 
-        [(str,b,c)]   -> str
-        ((str,b,c):t) -> str ++ colaBini t 
 
 {-
 19. Defina a fun¸c˜ao idade :: Int -> Int -> [(String,Int)] -> [String] que recebe o ano,
@@ -255,10 +175,6 @@ a ["rui","ana"].
 -}
 
 idadeBini :: Int -> Int -> [(String,Int)] -> [String]
-idadeBini a i l = 
-    case l of 
-        []        -> []
-        ((np,an):t) -> if a - an >= i then np : idadeBini a i t else idadeBini a i t
 
 {-
 20. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao, 
@@ -267,10 +183,6 @@ que dado um valor n e um valor m constr´oi a lista [n0, . . . , nm−1].
 -}
 
 powerEnumFrom :: Int -> Int -> [Int]
-powerEnumFrom n 1 = [1]
-powerEnumFrom n m 
-    | m > 1 = powerEnumFrom n (m-1) ++ [n^(m-1)]
-    | otherwise = []
 
 {-
 21. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao,
@@ -282,15 +194,8 @@ n˜ao ´e primo.
 -}
 
 isPrime :: Int -> Bool
-isPrime n 
-    | n >= 2    = primeCheckSofia n 2
-    | otherwise = False
 
 primeCheckSofia :: Int -> Int -> Bool
-primeCheckSofia n m
-    | m * m > n     = True
-    | mod n m == 0  = False
-    | otherwise     = primeCheckSofia n (m + 1)
 
 {-
 22. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isPrefixOf :: Eq a => [a] -> [a] -> Bool que testa se uma lista ´e prefixo de outra.
@@ -299,11 +204,7 @@ Por exemplo, isPrefixOf [10,20] [10,20,30] corresponde a True enquanto que isPre
 -}
 
 isPrefixOf :: Eq a => [a] -> [a] -> Bool
-isPrefixOf _ [] = False
-isPrefixOf [] _ = True
-isPrefixOf (h1:t1) (h2:t2)
-    | h1 == h2 && isPrefixOf t1 t2  = True
-    | otherwise                     = False
+
 {-
 23. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSuffixOf :: Eq a => [a] -> [a] -> Bool que testa se uma lista ´e sufixo de outra.
 Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuffixOf
@@ -311,11 +212,7 @@ Por exemplo, isSuffixOf [20,30] [10,20,30] corresponde a True enquanto que isSuf
 -}
 
 isSuffixOf :: Eq a => [a] -> [a] -> Bool
-isSuffixOf _ [] = False
-isSuffixOf [] _ = True
-isSuffixOf (h1:t1) (h2:t2) 
-    | h1 /= h2 && isSuffixOf t1 t2  = True
-    | otherwise                     = False
+
 
 {-
 24. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) isSubsequenceOf :: Eq a => [a] -> [a] -> Bool que testa se os elementos de uma lista ocorrem noutra pela mesma
@@ -325,11 +222,7 @@ isSubsequenceOf [40,20] [10,20,30,40] corresponde a False.
 -}
 
 isSubsequenceOf :: Eq a => [a] -> [a] -> Bool
-isSubsequenceOf [] _ = True
-isSubsequenceOf _ [] = False
-isSubsequenceOf (h1:t1) (h2:t2) 
-    | h1 == h2  = isSubsequenceOf t1 t2
-    | otherwise = isSubsequenceOf (h1:t1) t2
+
 
 {-
 25. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) elemIndices :: Eq a => a ->
@@ -338,13 +231,7 @@ Por exemplo, elemIndices 3 [1,2,3,4,3,2,3,4,5] corresponde a [2,4,6].
 -}
 
 elemIndicesBini :: Eq a => a -> [a] -> [Int]
-elemIndicesBini x l = elemIndicesBiniAux x l 0
-    where
-        elemIndicesBiniAux :: Eq a => a -> [a] -> Int -> [Int]
-        elemIndicesBiniAux _ [] _ = []
-        elemIndicesBiniAux x (h:t) i 
-            | x == h    = i : elemIndicesBiniAux x t (i+1)
-            | otherwise = elemIndicesBiniAux x t (i+1) 
+
 
 
 {-
@@ -354,10 +241,7 @@ Por exemplo, nub [1,2,1,2,3,1,2] corresponde a [1,2,3].
 -}
 
 nubBini :: Eq a => [a] -> [a]
-nubBini [] = []
-nubBini (h:t) 
-    | h `elem` t    = nubBini t
-    | otherwise     = reverseBini(h : nubBini t) 
+
 
 {-
 27. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) delete :: Eq a => a -> [a]
@@ -367,10 +251,7 @@ Por exemplo, delete 2 [1,2,1,2,3,1,2] corresponde a [1,1,2,3,1,2]. Se n˜ao exis
 -}
 
 deleteBini :: Eq a => a -> [a] -> [a]
-deleteBini x [] = []
-deleteBini x (h:t) 
-    | x == h    = t
-    | otherwise = h : deleteBini x t 
+
 
 {-
 28. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) (\\):: Eq a => [a] -> [a]
@@ -380,12 +261,7 @@ Por exemplo, (\\)[1,2,3,4,5,1] [1,5] corresponde a [2,3,4,1].
 -}
 
 (\\\) :: Eq a => [a] -> [a] -> [a]
-(\\\) [] [] = []
-(\\\) l []  = l
-(\\\) (h:t) (h':t')
-    | h == h'   = (\\\) t t'
-    | otherwise = h : (\\\) t (h':t')
- 
+
 {-
 29. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) union :: Eq a => [a] -> [a]
 -> [a] que retorna a lista resultante de acrescentar `a primeira lista os elementos da segunda
@@ -394,12 +270,7 @@ Por exemplo, union [1,1,2,3,4] [1,5] corresponde a [1,1,2,3,4,5].
 -}
 
 unionBini :: Eq a => [a] -> [a] -> [a]
-unionBini [] [] = []
-unionBini l []  = []
-unionBini [] l  = l
-unionBini (h1:t1) (h2:t2)
-    | h1 == h2  = h1 : unionBini t1 t2  
-    | otherwise = h1 : unionBini t1 (h2:t2)
+
 
 {-
 30. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) intersect :: Eq a => [a] ->
@@ -409,12 +280,7 @@ Por exemplo, intersect [1,1,2,3,4] [1,3,5] corresponde a [1,1,3].
 -}
 
 intersectBini :: Eq a => [a] -> [a] -> [a]
-intersectBini [] [] = [] 
-intersectBini [] l  = []
-intersectBini l []  = []
-intersectBini (h1:t1) (h2:t2)   
-    | h1 == h2  = h1 : intersectBini t1 (h2:t2)
-    | otherwise = intersectBini t1 t2
+
 
 
 {-
@@ -425,10 +291,7 @@ Por exemplo, insert 25 [1,20,30,40] corresponde a [1,20,25,30,40].
 -}
 
 insertBini :: Ord a => a -> [a] -> [a]
-insertBini x [] = [x]
-insertBini x (h:t)
-    | x <= h    = x : (h:t) 
-    | otherwise = h : insertBini x t
+
 
 {-
 32. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unwords :: [String] -> String que
@@ -437,10 +300,7 @@ Por exemplo, unwords ["Programacao", "Funcional"] corresponde a "Programacao Fun
 -}
 
 unwordsBini :: [String] -> String
-unwordsBini l = 
-    case l of 
-        []      -> "" 
-        (h:t)   -> h ++ " " ++ unwordsBini t
+unwordsBini [] = undefined
 
 {-
 33. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) unlines :: [String] -> String que
@@ -449,10 +309,6 @@ Por exemplo, unlines ["Prog", "Func"] corresponde a "Prog\nFunc\n".
 -}
 
 unlinesBini :: [String] -> String
-unlinesBini l = 
-    case l of
-        []      -> ""
-        (h:t)   -> h ++ "\n" ++ unlinesBini t
 
 {-
 34. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pMaior :: Ord a => [a] -> Int que dada
@@ -462,14 +318,6 @@ maior.
 -}
 
 pMaior :: Ord a => [a] -> Int
-pMaior []       = error "lista vazia"
-pMaior (h:t)    = pMaiorAux t 1 h 0
-    where 
-        pMaiorAux :: Ord a => [a] -> Int -> a -> Int -> Int
-        pMaiorAux [] _ _ iMaior = iMaior
-        pMaiorAux (x:xs) iAtual maior iMaior
-            | x > maior = pMaiorAux xs (iAtual + 1) x iAtual
-            | otherwise = pMaiorAux xs (iAtual + 1) maior iMaior
 
 {-
 35. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao (pr´e-definida) lookup :: Eq a => a -> [(a,b)]
@@ -479,10 +327,6 @@ Por exemplo, lookup ’a’ [(’a’,1),(’b’,4),(’c’,5)] corresponde `a
 -}
 
 lookupBini :: Eq a => a -> [(a,b)] -> Maybe b
-lookupBini s [] = Nothing
-lookupBini s ((a,b):t) 
-    | s == a    = Just b
-    | otherwise = lookupBini s t
 
 {-
 36. Defina a fun¸c˜ao preCrescente :: Ord a => [a] -> [a] calcula o maior prefixo crescente
@@ -491,11 +335,6 @@ Por exemplo, preCrescente [3,7,9,6,10,22] corresponde a [3,7,9].
 -}
 
 preCrescente :: Ord a => [a] -> [a]
-preCrescente []     = []
-preCrescente [a]    = [a]
-preCrescente (h:t)
-    | h <= head t   = h : preCrescente t
-    | otherwise     = [h]
 
 {-
 37. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao iSort :: Ord a => [a] -> [a] que calcula
@@ -507,11 +346,6 @@ iSort
 -}
 
 iSortBini :: Ord a => [a] -> [a]
-iSortBini [] = []
-iSortBini [a] = [a]
-iSortBini (h:t) 
-    | h < head t    = h : iSortBini t
-    | otherwise     = insertBini h (iSortBini t)  
 
 {-
 38. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao menor :: String -> String -> Bool que
@@ -522,9 +356,6 @@ Por exemplo, menor "sai" "saiu" corresponde a True enquanto que menor "programac
 -}
 
 menor :: String -> String -> Bool
-menor s1 s2 
-    | lengthBini s1 < lengthBini s2 = True
-    | otherwise                     = False
 
 {-
 39. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -537,10 +368,6 @@ que elemMSet ’d’ [(’b’,2), (’a’,4), (’c’,1)] corresponde a False
 -}
 
 elemMSetBini :: Eq a => a -> [(a,Int)] -> Bool
-elemMSetBini x [] = False
-elemMSetBini x ((a,b):t)
-    | x == a    = True  
-    | otherwise = elemMSetBini x t
 
 {-
 40. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -552,9 +379,6 @@ Por exemplo, converteMSetBini [(’b’,2), (’a’,4), (’c’,1)] correspond
 -}
 
 converteMSetBini :: [(a,Int)] -> [a]    
-converteMSetBini [] = []
-converteMSetBini [(a,b)]    = replicateBini b a
-converteMSetBini ((a,b):t)  = replicateBini b a ++ converteMSetBini t
 
 {-
 41. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -567,10 +391,6 @@ Por exemplo, insereMSet ’c’ [(’b’,2), (’a’,4), (’c’,1)] correspo
 -}
 
 insereMSetBini :: Eq a => a -> [(a,Int)] -> [(a,Int)]
-insereMSetBini x [] = [(x,1)]
-insereMSetBini x ((a,b):t)
-    | x == a    = (a,b + 1) : t
-    | otherwise = (a,b) : insereMSetBini x t
 
 {-
 42. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -584,11 +404,6 @@ Por exemplo, removeMSet 'c' [('b',2), ('a',4), ('c',1)] corresponde a [(’b’,
 -}
 
 removeMSet :: Eq a => a -> [(a,Int)] -> [(a,Int)]
-removeMSet s [] = []
-removeMSet s ((a,b):t)
-    | s == a && b == 1 = t
-    | s == a && b > 1 = (a,b-1) : t 
-    | otherwise = (a,b) : removeMSet s t
 
 {-
 43. Considere que se usa o tipo [(a,Int)] para representar multi-conjuntos de elementos de a.
@@ -597,9 +412,6 @@ segunda componente seja menor ou igual a zero.
 -}
 
 cardMSet :: [(a,Int)] -> Int
-cardMSet [] = 0
-cardMSet [(a,b)] = b
-cardMSet ((a,b):t) = b + cardMSet t
 
 {-
 44. Apresente uma defini¸c˜ao recursiva da fun¸c˜ao pr´e-definida partitionEithers :: [Either
@@ -611,12 +423,6 @@ a b] -> ([a],[b]) que divide uma lista de Either s em duas listas.
 -}
 
 partitionEithers :: [Either a b] -> ([a],[b])
-partitionEithers [] = ([],[])
-partitionEithers ((Left a):t) = (a:esq , dir)
-        where (esq,dir) = partitionEithers t
-partitionEithers ((Right b):t) = (esq , b:dir)
-        where (esq,dir) = partitionEithers t
-            
 
 
 {-
@@ -628,10 +434,6 @@ que colecciona os elementos do tipo a de uma lista.
 -}
 
 catMaybes :: [Maybe a] -> [a]
-catMaybes []            = []
-catMaybes [Just a]      = [a]
-catMaybes ((Just a):t)  = a : catMaybes t
-catMaybes ((Nothing):t) = catMaybes t
 
 {-
 46. Considere o seguinte tipo para representar movimentos de um robot.
@@ -649,13 +451,7 @@ data Movimento
     deriving Show
 
 caminho :: (Int,Int) -> (Int,Int) -> [Movimento]
-caminho (x1,y1) (x2,y2) 
-    | x1 < x2 = Este  : caminho (x1+1,y1) (x2,y2)
-    | x1 > x2 = Oeste : caminho (x1,y1) (x2+1,y2)
-    | y1 < y2 = Norte : caminho (x1,y1+1) (x2,y2)
-    | y1 > y2 = Sul   : caminho (x1,y1) (x2,y2+1)
-    | otherwise = []
-     
+
 {-
 47. Consider o seguinte tipo de dados,
 data Movimento = Norte | Sul | Este | Oeste
@@ -669,15 +465,8 @@ fun¸c˜ao posicao definida acima.
 -- FUNÇÃO RETIRADA DE https://pf.sofiars.xyz/50q/47/ PELA PROFESSORA Sofia DAS AULAS PRATICAS DE PF
 
 posicaoSofia :: (Int,Int) -> [Movimento] -> (Int,Int)
-posicaoSofia p [] = p
-posicaoSofia (x, y) (Norte:t) = posicaoSofia (x, y + 1) t
-posicaoSofia (x, y) (Sul:t) = posicaoSofia (x, y - 1) t
-posicaoSofia (x, y) (Este:t) = posicaoSofia (x + 1, y) t
-posicaoSofia (x, y) (Oeste:t) = posicaoSofia (x - 1, y) t
 
 hasLoopsSofia :: (Int,Int) -> [Movimento] -> Bool
-hasLoopsSofia _ [] = False
-hasLoopsSofia posi movs = posi == posicaoSofia posi movs || hasLoopsSofia posi (init movs)
 
 {-
 48. Considere os seguintes tipos para representar pontos e rectˆangulos, respectivamente. Assuma
@@ -698,12 +487,7 @@ data Rectangulo = Rect Ponto Ponto
     deriving Show
 
 contaQuadrados :: [Rectangulo] -> Int
-contaQuadrados [] = 0
-contaQuadrados [Rect (0,0) (x2,y2)] = 1
-contaQuadrados ((Rect (x1,y1) (x2,y2)):t)
-    | abs(x2 - x1) == abs(y2 - y1) = 1 + contaQuadrados t 
-    | otherwise = contaQuadrados t
- 
+
 {-
 49. Considere os seguintes tipos para representar pontos e rectˆangulos, respectivamente. Assuma
 que os rectˆangulos tˆem os lados paralelos aos eixos e s˜ao representados apenas por dois dos
@@ -715,9 +499,7 @@ determina a ´area total que eles ocupam.
 -}
 
 areaTotal :: [Rectangulo] -> Float  
-areaTotal [] = 0
-areaTotal ((Rect (x1,y1) (x2,y2)):t) = abs(x2-x1) * abs(y2-y1) + areaTotal t
-    
+
 {-
 50. Considere o seguinte tipo para representar o estado de um equipamento.
 data Equipamento = Bom | Razoavel | Avariado
@@ -733,11 +515,6 @@ data Equipamento
     deriving Show
 
 naoReparar :: [Equipamento] -> Int
-naoReparar [] = 0 
-naoReparar (e:t) = 
-    case e of
-        Avariado -> naoReparar t
-        _ -> 1 + naoReparar t
 
 
 
