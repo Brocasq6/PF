@@ -18,6 +18,7 @@ data ExpInt
     | Mult ExpInt ExpInt
 
 calcula :: ExpInt -> Int
+calcula = undefined
 
 
 {-
@@ -27,6 +28,7 @@ infixa (Mais (Const 3) (Menos (Const 2) (Const 5))) dê como resultado
 -}
 
 infixa :: ExpInt -> String
+infixa = undefined
 
 {-
 (c) Defina uma outra função de conversão para strings posfixa :: ExpInt -> String
@@ -35,6 +37,7 @@ de forma a que quando aplicada à expressão acima dê como resultado "3 2 5 -
 -}
 
 posFixa :: ExpInt -> String
+posFixa = undefined
 
 ---------------------- Exercicio 2 ----------------------
 
@@ -50,10 +53,12 @@ r1 = R 1 [R 2 [R 4 []], R 3 [R 5 [], R 6 []]]
 --(a) soma :: Num a => RTree a -> a que soma os elementos da árvore.
 
 soma :: Num a => RTree a -> a
+soma = undefined
 
 --(b) altura :: RTree a -> Int que calcula a altura da árvore.
 
 altura :: RTree a -> Int
+altura = undefined
 
 {-
 (c) prune :: Int -> RTree a -> RTree a que remove de uma árvore todos os ele-
@@ -61,16 +66,19 @@ mentos a partir de uma determinada profundidade.
 -}
 
 prune :: Int -> RTree a -> RTree a
+prune = undefined
 
 
 --(d) mirror :: RTree a -> RTree a que gera a árvore simétrica.
 
 mirror :: RTree a -> RTree a
+mirror = undefined
 
 
 --(e) postorder :: RTree a -> [a] que corresponde à travessia postorder da árvore.
 
 postorder :: RTree a -> [a]
+postorder = undefined
 
 
 ---------------------- Exercicio 3 ----------------------
@@ -90,6 +98,7 @@ data LTree a = Tip a | Fork (LTree a) (LTree a)
 -- (a) ltSum :: Num a => LTree a -> a que soma as folhas de uma árvore.
 
 ltSum :: Num a => LTree a -> a
+ltSum = undefined
 
 {-
 (b) listaLT :: LTree a -> [a] que lista as folhas de uma árvore (da esquerda para
@@ -97,10 +106,12 @@ a direita).
 -}
 
 listaLT :: LTree a -> [a]
+listaLT = undefined
 
 -- (c) ltHeight :: LTree a -> Int que calcula a altura de uma árvore.
 
 ltHeight :: LTree a -> Int
+ltHeight = undefined
 
 ---------------------- Exercicio 4 ----------------------
 

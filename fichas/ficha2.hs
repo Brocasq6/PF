@@ -6,6 +6,7 @@ cada elemento ´e o dobro do valor correspondente na lista de entrada.
 -}
 
 dobros :: [Float] -> [Float]
+dobros = undefined
 
 
 --------------------------------------
@@ -15,6 +16,7 @@ caracter ocorre numa string.
 -}
 
 numOcorre :: Char -> String -> Int
+numOcorre = undefined
 
 
 {-
@@ -22,6 +24,7 @@ numOcorre :: Char -> String -> Int
 -}
 
 positivos :: [Int] -> Bool
+positivos = undefined
 
 
 {-
@@ -30,6 +33,7 @@ lista de inteiros.
 -}
 
 soPos :: [Int] -> [Int]
+soPos = undefined
 
 
 {-
@@ -37,6 +41,7 @@ soPos :: [Int] -> [Int]
 -}
 
 somaNeg :: [Int] -> Int
+somaNeg = undefined
 
 
 {-
@@ -46,6 +51,7 @@ lista de entrada tiver menos de trˆes elementos, devolve a pr´opria lista.
 -}
 
 tresUlt :: [a] -> [a]
+tresUlt = undefined
 
 
 
@@ -55,6 +61,7 @@ pares.
 -}
 
 segundos :: [(a,b)] -> [b]
+segundos = undefined
 
 
 {-
@@ -63,6 +70,7 @@ aparece na lista como primeira componente de algum dos pares.
 -}
 
 nosPrimeiros :: (Eq a) => a -> [(a,b)] -> Bool
+nosPrimeiros = undefined
 
 
 {-
@@ -72,6 +80,7 @@ Por exemplo, sumTriplos [(2,4,11), (3,1,-5), (10,-3,6)] = (15,2,12)
 -}
 
 sumTriplos :: (Num a, Num b, Num c) => [(a,b,c)] -> (a,b,c)
+sumTriplos = undefined
 
 
 -----------------------------------------------------------------------------------------
@@ -95,6 +104,7 @@ type Monomio = (Float,Int)
 -- (a) conta :: Int -> Polinomio -> Int de forma a que (conta n p) indica quantos mon´omios de grau n existem em p.
 
 conta :: Int -> Polinomio -> Int 
+conta = undefined
 
 
 -- (b) grau :: Polinomio -> Int que indica o grau de um polin´omio.
@@ -102,6 +112,7 @@ conta :: Int -> Polinomio -> Int
 -- grau [(1,3), (-4,2), (2,1), (7,0)] = 3
 
 grau :: Polinomio -> Int
+grau = undefined
  
 
 {-
@@ -110,6 +121,7 @@ um dado grau de um polin´omio.
 -}
 
 selgrau :: Int -> Polinomio -> Polinomio
+selgrau = undefined
 
 
 
@@ -131,6 +143,7 @@ coeficiente zero.
 -}
 
 simp :: Polinomio -> Polinomio
+simp = undefined
 
 {-
 
@@ -140,6 +153,7 @@ tiplica¸c˜ao de um mon´omio por um polin´omio.
 -}
 
 mult :: Monomio -> Polinomio -> Polinomio
+mult = undefined
 
 
 {-
@@ -155,6 +169,7 @@ um polin´omio normalizado.
 -}
 
 soma :: Polinomio -> Polinomio -> Polinomio
+soma = undefined
 
 
 {-

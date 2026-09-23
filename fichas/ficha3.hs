@@ -11,12 +11,14 @@ type Nome = String
 type Agenda = [(Nome, [Contacto])]
 
 agendaExemplo :: Agenda
+agendaExemplo = undefined
 
 --(a) Defina a fun¸c˜ao acrescEmail :: Nome -> String -> Agenda -> Agenda que,
 --dado um nome, um email e uma agenda, acrescenta essa informa¸c˜ao `a agenda.
 
 -- ...existing code...
 acresEmail :: Nome -> String -> Agenda -> Agenda 
+acresEmail = undefined
 
 
 --(b) Defina a fun¸c˜ao verEmails :: Nome -> Agenda -> Maybe [String] que, dado
@@ -24,9 +26,11 @@ acresEmail :: Nome -> String -> Agenda -> Agenda
 --nome n˜ao existir na agenda a fun¸c˜ao deve retornar Nothing.
 
 verEmails :: Nome -> Agenda -> Maybe [String]
+verEmails = undefined
 
 
 email :: Contacto -> Bool
+email = undefined
 
 
 --(c) Defina a fun¸c˜ao consTelefs :: [Contacto] -> [Integer] que, dada uma lista
@@ -34,6 +38,7 @@ email :: Contacto -> Bool
 --telefones fixos como telem´oveis).
 
 consTelef :: [Contacto] -> [Integer]
+consTelef = undefined
 
 
 
@@ -41,3 +46,5 @@ consTelef :: [Contacto] -> [Integer]
 --e uma agenda, retorna o n´umero de telefone de casa (caso exista)
 
 casa :: Nome -> Agenda -> Maybe Integer
+casa = undefined
+

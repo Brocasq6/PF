@@ -11,6 +11,7 @@ est˜ao j´a definidas no m´odulo Data.Char.
 -- digitAlpha [1,a,2,b,3] = ((1,2,3),(a,b,c))
 
 digitAlpha :: String -> (String,String)
+digitAlpha = undefined
 
 
 {-
@@ -32,19 +33,24 @@ devolvendo um triplo com essa informa¸c˜ao. Certifique-se que a fun¸c˜ao que
 percorre a lista apenas uma vez.
 -}
 isNeg :: Int -> Bool 
+isNeg = undefined
 
 isPos :: Int -> Bool
+isPos = undefined
 
 
 isZero :: Int -> Bool
+isZero = undefined
 
 
 
 nzp :: [Int] -> (Int,Int,Int)
+nzp = undefined
 
 
 
 nzp2 :: [Int] -> (Int,Int,Int)
+nzp2 = undefined
 
 {-
 3. Defina a fun¸c˜ao divMod :: Integral a => a -> a -> (a, a) que calcula simultane-
@@ -52,6 +58,7 @@ amente a divis˜ao e o resto da divis˜ao inteira por subtrac¸c˜oes sucessivas
 -}
 
 divMod2 :: Integral a => a -> a -> (a, a)
+divMod2 = undefined
 
 
 
@@ -61,6 +68,7 @@ siva que determina qual o n´umero que corresponde a uma lista de digitos.
 -}
 
 fromDigits :: [Int] -> Int
+fromDigits = undefined
 
 {-
 Note que:
@@ -69,6 +77,7 @@ fromDigits [1,2,3,4] = 1 × 103 + 2 × 102 + 3 × 101 + 4 × 100
 -}
 
 fromDigits2 :: [Int] -> Int
+fromDigits2 = undefined
 
 
 
@@ -80,6 +89,7 @@ maxSumInit l = maximum [sum m | m <- inits l]
 -}
 
 maxSumInit2 :: (Num a, Ord a) => [a] -> a
+maxSumInit2 = undefined
 
 
 
@@ -96,6 +106,7 @@ fib n = fib (n-1) + fib (n-2)
 -}
 
 fib2 :: Int -> Int
+fib2 = undefined
 
 
 
@@ -106,6 +117,7 @@ que vai devolver no final.
 -}
 
 intToStr :: Integer -> String
+intToStr = undefined
 
 
 

@@ -11,10 +11,13 @@ dialogo s = do
 -- calcula a funcao fibonacci de um nº de lido do teclado
 
 fib_normal :: Int -> Int
+fib_normal = undefined
 
 fib_IO :: IO ()
+fib_IO = undefined
 
 fib_negativos :: IO ()
+fib_negativos = undefined
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -24,6 +27,7 @@ fib_negativos :: IO ()
 
 
 dataAl :: IO (Int,Int,Int)
+dataAl = undefined
 
 
 {-
@@ -34,10 +38,12 @@ gerados os 90 n´umeros diferentes.
 -}
 
 bingo :: IO() 
+bingo = undefined
 
 
 
 valores :: [Int] -> IO [Int]
+valores = undefined
 
 
 {-

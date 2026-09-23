@@ -12,153 +12,138 @@ import Data.Char
 ----------------------------------------------------------------------------------
 
 perimetro :: Float -> Float
-perimetro = undefined
 
 
 ----------------------------------------------------------------------------------
 
 dist :: (Double,Double) -> (Double,Double) -> Double
-dist = undefined
+
 
 ----------------------------------------------------------------------------------
 
 primUlt :: [Int] -> (Int,Int)
-primUlt = undefined
+
 
 ----------------------------------------------------------------------------------
 
 multiplo :: Int -> Int -> Bool
-multiplo = undefined
 
 ----------------------------------------------------------------------------------
 
 truncaImpar :: [Int] -> [Int]
-truncaImpar = undefined
 
 ----------------------------------------------------------------------------------
 
 max_2 :: Int -> Int -> Int
-max_2 = undefined
+
 ----------------------------------------------------------------------------------
 
 max_3 :: Int -> Int -> Int -> Int
-max_3 = undefined
 
-------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 
 nRaizes :: Int -> Int -> Int -> Int
-nRaizes = undefined
 
 ------------------------------------------------------------------------------------
 
 type Hora = (Int,Int)
 
 hora_val :: (Int,Int) -> Bool
-hora_val = undefined
 
 ------------------------------------------------------------------------------------
 
 hora_ad :: (Int,Int) -> (Int,Int) -> Bool
-hora_ad = undefined
 
 ------------------------------------------------------------------------------------
 horaParaMinutos :: (Int,Int) -> Int
-horaParaMinutos = undefined
 
 ------------------------------------------------------------------------------------
 
 minutosParaHora :: Int -> (Int,Int)
-minutosParaHora = undefined
 
 ------------------------------------------------------------------------------------
 
 h_dif :: (Int,Int) -> (Int,Int) -> Int
-h_dif = undefined
 
 h_dif2 :: Hora -> Hora -> Int
-h_dif2 = undefined
 
 ------------------------------------------------------------------------------------
 
 min_add :: Int -> (Int,Int) -> (Int,Int)
-min_add = undefined
+
 ------------------------------------------------------------------------------------
 
 data Semafro = Verde | Amarelo | Vermelho
 	deriving (Show,Eq)
 
 next :: Semafro -> Semafro
-next = undefined
+
 ------------------------------------------------------------------------------------
 
 stop :: Semafro -> Bool
-stop = undefined
+
 ------------------------------------------------------------------------------------
 
 safe :: Semafro -> Semafro -> Bool
-safe = undefined
+
 ------------------------------------------------------------------------------------
 
 data Ponto = Cartesiano Double Double | Polar Double Double
         deriving (Show,Eq)
 
 posX :: Ponto -> Double
-posX = undefined
+
 ------------------------------------------------------------------------------------
 
 posY :: Ponto -> Double
-posY = undefined
+
 ------------------------------------------------------------------------------------
 
 raio :: Ponto -> Double
-raio = undefined
+
 ------------------------------------------------------------------------------------
 
 angulo :: Ponto -> Double
-angulo = undefined
-------------------------------------------------------------------------------------
 
 ------------------------------------------------------------------------------------
 
-distFigura :: Ponto -> Ponto -> Double
-distFigura = undefined
+------------------------------------------------------------------------------------
+
+dist :: Ponto -> Ponto -> Double
+
 ------------------------------------------------------------------------------------
 
 data Figura = Circulo Ponto Double
-             | Rectangulo Ponto Ponto
+            | Rectangulo Ponto Ponto
             | Triangulo Ponto Ponto Ponto
         deriving (Show,Eq)
 
 poligono :: Figura -> Bool
-poligono = undefined
+
 
 vertcies :: Figura -> [Ponto]
-vertcies = undefined
+
 
 area :: Figura -> Double
-area = undefined
+
 -- completar
 
-perimetroFigura :: Figura -> Double
-perimetroFigura = undefined
+perimetro :: Figura -> Double
 
 -- usando funcoes ord :: Char -> Int
 --              e chr :: Int -> Char
 
 isLower :: Char -> Bool
-isLower = undefined
+
 
 isDigit :: Char -> Bool
-isDigit = undefined
+
 
 isAlpha :: Char -> Bool
-isAlpha = undefined
 
 toUpper :: Char -> Char
-toUpper = undefined
 
 intToDigit :: Int -> Char
-intToDigit = undefined
+
 
 digitToInt :: Char -> Int
-digitToInt = undefined

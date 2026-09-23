@@ -14,21 +14,25 @@ mdc x y == mdc (x+y) y == mdc x (y+x)
 -}
 
 normaliza :: Frac -> Frac
+normaliza = undefined
 
 
 mdc :: Integer -> Integer -> Integer
+mdc = undefined
 
 
 -- (b) Defina Frac como instância da classe Eq.
 
 instance Eq Frac where
     (==) :: Frac -> Frac -> Bool
+    (==) = undefined
 
 
 -- (c) Defina Frac como instância da classe Ord.
 
 instance Ord Frac where
     (<=) :: Frac -> Frac -> Bool
+    (<=) = undefined
 
 {-
 (d) Defina Frac como instância da classe Show, de forma a que cada fracção seja
@@ -37,6 +41,7 @@ apresentada por (numerador/denominador).
 
 instance Show Frac where
     show :: Frac -> String
+    show = undefined
 
 
 {-
@@ -50,18 +55,25 @@ fromInteger :: Integer -> a
 
 instance Num Frac where
     (+) :: Frac -> Frac -> Frac
+    (+) = undefined
 
     (*) :: Frac -> Frac -> Frac
+    (*) = undefined
 
     (-) :: Frac -> Frac -> Frac
+    (-) = undefined
 
     negate :: Frac -> Frac 
+    negate = undefined
     
     abs :: Frac -> Frac 
+    abs = undefined
 
     signum :: Frac -> Frac
+    signum = undefined
 
     fromInteger :: Interger -> Frac
+    fromInteger = undefined
     
 {-
 (f) Defina uma função que, dada uma fracção f e uma lista de fracções l, selecciona
@@ -69,6 +81,7 @@ de l os elementos que são maiores do que o dobro de f.
 -}
 
 maioresQueDobro :: Frac -> [Frac] -> [Frac]
+maioresQueDobro = undefined
 
 
 -- exercicio 2
@@ -87,12 +100,14 @@ data Exp a = Const a
 -- (a) Declare Exp a como uma instˆancia de Show.
 
 showExp :: Show a => Exp a -> String
+showExp = undefined
 
 
 instance show a => snow(Exp a) where
     show = showExp
 
 calcula :: Num a => Exp a -> a 
+calcula = undefined
 
 
 
@@ -105,6 +120,7 @@ eqExp (Const a) (Const b)             = calcula a == calcula b
 -- (c) Declare Exp a como instˆancia da classe Num.
 
 numExp :: Num a 
+numExp = undefined
 
 
 {-
