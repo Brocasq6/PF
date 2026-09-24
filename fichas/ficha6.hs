@@ -10,7 +10,6 @@ data BTree a = Empty
 t1 :: BTree Int
 t1 = Empty
 
-
 -- 2. Árvore com apenas um nó
 t2 :: BTree Int
 t2 = Node 5 Empty Empty
@@ -71,21 +70,17 @@ t_stor_procura = Node 8
 altura :: BTree a -> Int
 altura = undefined
 
-
 -- | (b) contaNodos :: BTree a -> Int que calcula o n´umero de nodos da ´arvore.
 
 contaNodos :: BTree a -> Int 
-contaNodos = undefined
 
 -- | (c) folhas :: BTree a -> Int, que calcula o n´umero de folhas (i.e., nodos sem descendentes) da ´arvore.
 
 folhas :: BTree a -> Int
-folhas = undefined
 
 -- | (d) prune :: Int -> BTree a -> BTree a, que remove de uma ´arvore todos os elementos a partir de uma determinada profundidade.
 
 prune :: Int -> BTree a -> BTree a
-prune = undefined
 
 {-
 (e) path :: [Bool] -> BTree a -> [a], que dado um caminho (False corresponde
@@ -94,17 +89,14 @@ por onde esse caminho passa.
 -}
 
 path :: [Bool] -> BTree a -> [a]
-path = undefined
 
 -- | (f) mirror :: BTree a -> BTree a, que d´a a ´arvore sim´etrica.
 
 mirror :: BTree a -> BTree a
-mirror = undefined
 
 -- | (g) zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c que generaliza a fun¸c˜ao zipWith para ´arvores bin´arias.
 
 zipWithBT :: (a -> b -> c) -> BTree a -> BTree b -> BTree c
-zipWithBT = undefined
 
 {-
 (h) unzipBT :: BTree (a,b,c) -> (BTree a,BTree b,BTree c), que generaliza a
@@ -112,7 +104,6 @@ fun¸c˜ao unzip (neste caso de triplos) para ´arvores bin´arias.
 -}
 
 unzipBT :: BTree (a,b,c) -> (BTree a,BTree b,BTree c)
-unzipBT = undefined
 
 ------------------------------- ARVORES BINÁRIAS DE PROCURA -------------------------------
 
@@ -124,7 +115,6 @@ elemento de uma ´arvore bin´aria de procura n˜ao vazia.
 -}
 
 minimo :: Ord a => BTree a -> a
-minimo = undefined
 
 {-
 (b) Defina uma fun¸c˜ao semMinimo :: Ord a => BTree a -> BTree a que remove o
@@ -132,7 +122,6 @@ menor elemento de uma ´arvore bin´aria de procura n˜ao vazia.
 -}
 
 semMinimo :: Ord a => BTree a -> BTree a
-semMinimo = undefined
 
 {-
 (c) Defina uma fun¸c˜ao minSmin :: Ord a => BTree a -> (a,BTree a) que calcula,
@@ -140,7 +129,6 @@ com uma ´unica travessia da ´arvore o resultado das duas fun¸c˜oes anteriore
 -}
 
 minSmin :: Ord a => BTree a -> (a,BTree a)
-minSmin = undefined
 
 {-
 (d) Defina uma fun¸c˜ao remove :: Ord a => a -> BTree a -> BTree a que remove
@@ -148,7 +136,6 @@ um elemento de uma ´arvore bin´aria de procura, usando a fun¸c˜ao anterior.
 -}
 
 remove :: Ord a => a -> BTree a -> BTree a
-remove = undefined
 
 {-
 3. Considere agora que guardamos a informação sobre uma turma de alunos na seguinte estrutura de dados:
@@ -188,7 +175,6 @@ número, está inscrito.
 
 inscNum :: Numero -> Turma -> Bool
 inscNum = undefined
-
 {-
 (b) inscNome :: Nome -> Turma -> Bool, que verifica se um aluno, com um dado
 nome, está inscrito.
@@ -196,7 +182,6 @@ nome, está inscrito.
 
 inscNome :: Nome -> Turma -> Bool
 inscNome = undefined
-
 {-
 (c) trabEst :: Turma -> [(Numero,Nome)], que lista o número e nome dos alunos
 trabalhadores-estudantes (ordenados por número).
@@ -204,7 +189,6 @@ trabalhadores-estudantes (ordenados por número).
 
 trabEst :: Turma -> [(Numero,Nome)]
 trabEst = undefined
-
 {-
 (d) nota :: Numero -> Turma -> Maybe Classificacao, que calcula a classificação
 de um aluno (se o aluno não estiver inscrito a função deve retornar Nothing).
@@ -212,7 +196,6 @@ de um aluno (se o aluno não estiver inscrito a função deve retornar Nothing).
 
 nota :: Numero -> Turma -> Maybe Classificacao
 nota = undefined
-
 {-
 (e) percFaltas :: Turma -> Float, que calcula a percentagem de alunos que fal-
 taram à avaliação.
@@ -220,7 +203,6 @@ taram à avaliação.
 
 percFaltas :: Turma -> Float 
 percFaltas = undefined
-
 {-
 (f) mediaAprov :: Turma -> Float, que calcula a média das notas dos alunos que
 passaram.
@@ -228,7 +210,6 @@ passaram.
 
 mediaAprov :: Turma -> Float
 mediaAprov = undefined
-
 {-
 (g) aprovAv :: Turma -> Float, que calcula o rácio de alunos aprovados por avali-
 ados. Implemente esta função fazendo apenas uma travessia da árvore.
@@ -239,4 +220,3 @@ aprovAv = undefined
 
 sumAprovAv :: Turma -> (Float, Float)
 sumAprovAv = undefined
-

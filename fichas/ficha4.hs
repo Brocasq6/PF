@@ -73,7 +73,7 @@ fromDigits = undefined
 {-
 Note que:
 fromDigits [1,2,3,4] = 1 × 103 + 2 × 102 + 3 × 101 + 4 × 100 
-                     = 4 + 10 × (3 + 10 × (2 + 10 × (1 + 10 × 0)))
+                        = 4 + 10 × (3 + 10 × (2 + 10 × (1 + 10 × 0)))
 -}
 
 fromDigits2 :: [Int] -> Int

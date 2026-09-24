@@ -1,6 +1,7 @@
 
 module Ficha1 where
 import Data.Char
+import Data.Time.Format.ISO8601 (yearFormat)
 -- length l: o n´umero de elementos da lista l
 -- head l: a cabe¸ca da lista (n˜ao vazia) l
 -- tail l: a cauda da lista (n˜ao vazia) l
@@ -12,33 +13,45 @@ import Data.Char
 ----------------------------------------------------------------------------------
 
 perimetro :: Float -> Float
-perimetro = undefined
+perimetro r = 2*(pi*r)
 
 
 ----------------------------------------------------------------------------------
 
 dist :: (Double,Double) -> (Double,Double) -> Double
-dist = undefined
+dist (x1,y1) (x2,y2) = sqrt(((x2-x1)^2)-((y2-y1)^1))
 
 ----------------------------------------------------------------------------------
 
 primUlt :: [Int] -> (Int,Int)
-primUlt = undefined
+primUlt [] = (0,0)
+primUlt (h:t) = (h, last t)
+
 
 ----------------------------------------------------------------------------------
 
 multiplo :: Int -> Int -> Bool
-multiplo = undefined
+multiplo x y 
+        | y `mod` x == 0 = True
+        |otherwise = False
 
 ----------------------------------------------------------------------------------
 
 truncaImpar :: [Int] -> [Int]
-truncaImpar = undefined
+truncaImpar [] = []
+truncaImpar l
+        | length l `mod` 2 == 0 = l
+        | otherwise = drop 1 l
 
 ----------------------------------------------------------------------------------
 
 max_2 :: Int -> Int -> Int
-max_2 = undefined
+max_2 x y
+        | x == 0 = y
+        | y == 0 = x
+        | x > y = x
+        | otherwise = y
+
 ----------------------------------------------------------------------------------
 
 max_3 :: Int -> Int -> Int -> Int
@@ -85,7 +98,7 @@ min_add = undefined
 ------------------------------------------------------------------------------------
 
 data Semafro = Verde | Amarelo | Vermelho
-	deriving (Show,Eq)
+        deriving (Show,Eq)
 
 next :: Semafro -> Semafro
 next = undefined
@@ -125,8 +138,8 @@ distFigura = undefined
 ------------------------------------------------------------------------------------
 
 data Figura = Circulo Ponto Double
-             | Rectangulo Ponto Ponto
-            | Triangulo Ponto Ponto Ponto
+                | Rectangulo Ponto Ponto
+                | Triangulo Ponto Ponto Ponto
         deriving (Show,Eq)
 
 poligono :: Figura -> Bool

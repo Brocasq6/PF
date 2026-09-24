@@ -113,7 +113,7 @@ conta = undefined
 
 grau :: Polinomio -> Int
 grau = undefined
- 
+
 
 {-
 (c) selgrau :: Int -> Polinomio -> Polinomio que selecciona os mon´omios com
