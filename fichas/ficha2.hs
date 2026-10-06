@@ -6,7 +6,8 @@ cada elemento ´e o dobro do valor correspondente na lista de entrada.
 -}
 
 dobros :: [Float] -> [Float]
-dobros = undefined
+dobros [] = []
+dobros (h:t) = 2*h : dobros t
 
 
 --------------------------------------
@@ -16,7 +17,10 @@ caracter ocorre numa string.
 -}
 
 numOcorre :: Char -> String -> Int
-numOcorre = undefined
+numOcorre c [] = 0
+numOcorre c (h:t)
+    | c == h = 1 + numOcorre c t
+    | otherwise = numOcorre c t
 
 
 {-
@@ -24,7 +28,10 @@ numOcorre = undefined
 -}
 
 positivos :: [Int] -> Bool
-positivos = undefined
+positivos [] = False
+positivos (h:t)
+    | h > 0 = positivos t
+    | otherwise = False 
 
 
 {-
@@ -33,7 +40,11 @@ lista de inteiros.
 -}
 
 soPos :: [Int] -> [Int]
-soPos = undefined
+soPos [] = []
+soPos (h:t)
+    | h < 0 = soPos t
+    | otherwise = h : soPos t
+
 
 
 {-
@@ -41,7 +52,10 @@ soPos = undefined
 -}
 
 somaNeg :: [Int] -> Int
-somaNeg = undefined
+somaNeg [] = 0
+somaNeg (h:t)
+    | h < 0 = 1 + somaNeg t
+    | otherwise = somaNeg t
 
 
 {-
@@ -51,7 +65,7 @@ lista de entrada tiver menos de trˆes elementos, devolve a pr´opria lista.
 -}
 
 tresUlt :: [a] -> [a]
-tresUlt = undefined
+tresUlt l = drop (length l - 3) l
 
 
 

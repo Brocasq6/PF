@@ -54,8 +54,8 @@ max2 x y
 
 ----------------------------------------------------------------------------------
 
-max_3 :: Int -> Int -> Int -> Int
-max_3 x y z
+max3 :: Int -> Int -> Int -> Int
+max3 x y z
         | x > y = max2 x z
         | x < y = max2 y z
         | otherwise = max2 x z
@@ -64,33 +64,45 @@ max_3 x y z
 ------------------------------------------------------------------------------------
 
 nRaizes :: Int -> Int -> Int -> Int
-nRaizes = undefined
+nRaizes x y z
+        | delta == 0    = 1
+        | delta < 0     = 0
+        | delta > 0     = 2
+        where delta = ( y^2 ) - 4 * x * z
 
 ------------------------------------------------------------------------------------
 
 type Hora = (Int,Int)
 
 hora_val :: (Int,Int) -> Bool
-hora_val = undefined
+hora_val (h,m)
+        | (h >= 0 || h < 24) && (0 <= m || m < 60) = True
+        | otherwise = False
 
 ------------------------------------------------------------------------------------
 
 hora_ad :: (Int,Int) -> (Int,Int) -> Bool
-hora_ad = undefined
+hora_ad (h1,m1) (h2,m2)
+        | h1 > h2 = True
+        | h1 == h2 && m1 > m2 = True
+        | otherwise = False
 
 ------------------------------------------------------------------------------------
 horaParaMinutos :: (Int,Int) -> Int
-horaParaMinutos = undefined
+horaParaMinutos (h,m) = (h*60) + m
 
 ------------------------------------------------------------------------------------
 
 minutosParaHora :: Int -> (Int,Int)
-minutosParaHora = undefined
+minutosParaHora m = (div m 60 , mod m 60) 
 
 ------------------------------------------------------------------------------------
 
 h_dif :: (Int,Int) -> (Int,Int) -> Int
-h_dif = undefined
+h_dif (h1,m1) (h2,m2)
+        | h1 == h2 && m1 > m2 = m1 - m2
+        | h1 > h2 = horaParaMinutos(h1,m1) - horaParaMinutos(h2,m2)
+        | otherwise = 0
 
 h_dif2 :: Hora -> Hora -> Int
 h_dif2 = undefined
