@@ -75,7 +75,8 @@ pares.
 -}
 
 segundos :: [(a,b)] -> [b]
-segundos = undefined
+segundos [] = []
+segundos ((a,b):t) = b : segundos t
 
 
 {-
@@ -84,7 +85,11 @@ aparece na lista como primeira componente de algum dos pares.
 -}
 
 nosPrimeiros :: (Eq a) => a -> [(a,b)] -> Bool
-nosPrimeiros = undefined
+nosPrimeiros x [] = False
+nosPrimeiros x ((a,b):t)
+    | x == a = True
+    | otherwise = nosPrimeiros x t
+
 
 
 {-
@@ -94,7 +99,7 @@ Por exemplo, sumTriplos [(2,4,11), (3,1,-5), (10,-3,6)] = (15,2,12)
 -}
 
 sumTriplos :: (Num a, Num b, Num c) => [(a,b,c)] -> (a,b,c)
-sumTriplos = undefined
+sumTriplos = undefined -- ???
 
 
 -----------------------------------------------------------------------------------------
