@@ -18,7 +18,7 @@ agendaExemplo = undefined
 
 -- ...existing code...
 acresEmail :: Nome -> String -> Agenda -> Agenda 
-acresEmail = undefined
+acresEmail _ _ [] = [(_,[_])]
 
 
 --(b) Defina a fun¸c˜ao verEmails :: Nome -> Agenda -> Maybe [String] que, dado

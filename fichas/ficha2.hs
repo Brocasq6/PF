@@ -106,7 +106,10 @@ sumTriplos = undefined -- ???
 -- Exercicio 3
 
 soDigitos :: [Char] -> [Char]
-soDigitos l = undefined
+soDigitos [] = []
+soDigitos (h:t)
+    | h >= '0' && h <= '9' = h : soDigitos t
+    | otherwise = soDigitos t
 
 minusculas :: [Char] -> Int
 minusculas l = undefined

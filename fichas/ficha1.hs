@@ -104,20 +104,32 @@ h_dif (h1,m1) (h2,m2)
         | h1 > h2 = horaParaMinutos(h1,m1) - horaParaMinutos(h2,m2)
         | otherwise = 0
 
-h_dif2 :: Hora -> Hora -> Int
-h_dif2 = undefined
-
 ------------------------------------------------------------------------------------
 
 min_add :: Int -> (Int,Int) -> (Int,Int)
-min_add = undefined
+min_add x (h,m) 
+        | x < 0 = (h,m)
+        | x + m > 60 = (h+1,x-m)
+        |otherwise = (h,m+x)
+
 ------------------------------------------------------------------------------------
 
-data Semafro = Verde | Amarelo | Vermelho
+data Semafro = Verde 
+        | Amarelo 
+        | Vermelho
         deriving (Show,Eq)
 
 next :: Semafro -> Semafro
-next = undefined
+next Verde = Amarelo
+next Amarelo = Vermelho
+next Vermelho = Verde
+
+next2 :: Semafro -> Semafro
+next2 c = case c of
+        Verde -> Amarelo
+        Amarelo -> Vermelho
+        Vermelho -> Verde
+
 ------------------------------------------------------------------------------------
 
 stop :: Semafro -> Bool
